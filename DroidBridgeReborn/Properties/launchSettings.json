@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "DroidBridgeReborn (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "DroidBridgeReborn (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
