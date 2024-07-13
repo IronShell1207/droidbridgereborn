@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<winUiEx:WindowEx
+	x:Class="CustomControlsLib.Wins.BorderlessWindow"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="using:CustomControlsLib.Wins"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:winUiEx="using:WinUIEx"
+	IsShownInSwitchers="False"
+	mc:Ignorable="d">
+	<Window.SystemBackdrop>
+		<winUiEx:TransparentTintBackdrop />
+	</Window.SystemBackdrop>
+	<SwapChainPanel
+		x:Name="swapChainPanel1"
+		HorizontalAlignment="Stretch"
+		VerticalAlignment="Stretch">
+		<Border x:Name="mainBorder" Background="Transparent">
+			<ContentPresenter x:Name="ContentFrame" x:FieldModifier="public" />
+		</Border>
+	</SwapChainPanel>
+</winUiEx:WindowEx>

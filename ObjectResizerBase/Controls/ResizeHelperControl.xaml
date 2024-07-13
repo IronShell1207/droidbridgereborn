@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<UserControl
+	x:Class="ObjectResizerBase.Controls.ResizeHelperControl"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:abstraction="using:ObjectResizerBase.Abstraction"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:media="using:CommunityToolkit.WinUI.UI.Media"
+	xmlns:ui="using:CommunityToolkit.WinUI.UI"
+	d:DataContext="{d:DesignInstance abstraction:ICanvasObject}"
+	mc:Ignorable="d">
+	<UserControl.Resources>
+		<!--  Стиль прямоугольников фонов кнопок.  -->
+		<Style x:Key="RectStyle" TargetType="Rectangle">
+			<Setter Property="RadiusY" Value="90" />
+			<Setter Property="RadiusX" Value="90" />
+			<Setter Property="Fill" Value="#aaffffff" />
+			<Setter Property="Stroke" Value="#aa000000" />
+			<Setter Property="StrokeThickness" Value="1" />
+			<Setter Property="HorizontalAlignment" Value="Stretch" />
+			<Setter Property="VerticalAlignment" Value="Stretch" />
+		</Style>
+		<!--  Стиль прямоугольников в углах.  -->
+		<Style x:Key="RectResizeStyle" TargetType="Rectangle">
+			<Setter Property="RadiusY" Value="90" />
+			<Setter Property="Height" Value="12" />
+			<Setter Property="Width" Value="12" />
+			<Setter Property="Margin" Value="-5" />
+			<Setter Property="IsHitTestVisible" Value="False" />
+			<Setter Property="Stroke" Value="#aa000000" />
+			<Setter Property="StrokeThickness" Value="1" />
+			<Setter Property="RadiusX" Value="90" />
+			<Setter Property="Fill" Value="#ffffff" />
+
+		</Style>
+
+		<!--  Цвет для выделения компонента.  -->
+		<SolidColorBrush x:Key="SelectedComponentVisualBackground" Color="#9930008f" />
+
+		<!--  Цвет для summ.  -->
+		<SolidColorBrush x:Key="_resizeBordersColor" Color="#fff" />
+		<!--  Размер области изменения размеров.  -->
+		<x:Double x:Key="ResizeCornerSize">25</x:Double>
+
+	</UserControl.Resources>
+
+	<Grid Background="Transparent" Visibility="{Binding IsInEditMode}">
+		<Grid
+			Background="Transparent"
+			IsHitTestVisible="{Binding IsSelected}"
+			Visibility="{Binding IsSelected, Mode=OneWay}">
+			<Rectangle
+				HorizontalAlignment="Stretch"
+				VerticalAlignment="Stretch"
+				Stroke="{StaticResource _resizeBordersColor}"
+				StrokeThickness="1" />
+			<Rectangle
+				HorizontalAlignment="Left"
+				VerticalAlignment="Top"
+				RenderTransformOrigin="0.5 0.5"
+				Style="{StaticResource RectResizeStyle}">
+				<ui:Effects.Shadow>
+					<media:AttachedCardShadow BlurRadius="5" Opacity="0.2" />
+				</ui:Effects.Shadow>
+			</Rectangle>
+			<Rectangle
+				HorizontalAlignment="Left"
+				VerticalAlignment="Bottom"
+				RenderTransformOrigin="0.5 0.5"
+				Style="{StaticResource RectResizeStyle}">
+				<ui:Effects.Shadow>
+					<media:AttachedCardShadow BlurRadius="5" Opacity="0.2" />
+				</ui:Effects.Shadow>
+			</Rectangle>
+			<Rectangle
+				HorizontalAlignment="Right"
+				VerticalAlignment="Top"
+				RenderTransformOrigin="0.5 0.5"
+				Style="{StaticResource RectResizeStyle}">
+				<ui:Effects.Shadow>
+					<media:AttachedCardShadow BlurRadius="5" Opacity="0.2" />
+				</ui:Effects.Shadow>
+
+			</Rectangle>
+			<Rectangle
+				HorizontalAlignment="Right"
+				VerticalAlignment="Bottom"
+				RenderTransformOrigin="0.5 0.5"
+				Style="{StaticResource RectResizeStyle}"
+				Visibility="{Binding IsSelected, Mode=OneWay}">
+				<ui:Effects.Shadow>
+					<media:AttachedCardShadow BlurRadius="5" Opacity="0.2" />
+				</ui:Effects.Shadow>
+
+			</Rectangle>
+
+		</Grid>
+		<Grid
+			x:Name="_rootElement"
+			Canvas.ZIndex="1000"
+			Background="Transparent"
+			IsHitTestVisible="{Binding IsSelected}"
+			Visibility="{Binding IsSelected, Mode=OneWay}">
+			<Rectangle
+				x:Name="LeftResizeLine"
+				Grid.RowSpan="2"
+				Width="{StaticResource ResizeCornerSize}"
+				Margin="-13,25"
+				HorizontalAlignment="Right"
+				VerticalAlignment="Stretch"
+				Fill="Transparent"
+				ManipulationMode="TranslateRailsX"
+				PointerCaptureLost="TopLeftResizeCorner_OnPointerCaptureLost"
+				PointerMoved="HorizontalResizeLine_OnPointerMoved"
+				PointerPressed="ResizeLine_OnPointerPressed"
+				PointerReleased="ResizeLine_OnPointerReleased"
+				RenderTransformOrigin="0.5 0.5"
+				Visibility="Collapsed" />
+
+			<Rectangle
+				x:Name="TopResizeLine"
+				Grid.ColumnSpan="2"
+				Height="{StaticResource ResizeCornerSize}"
+				Margin="25,-13"
+				HorizontalAlignment="Stretch"
+				VerticalAlignment="Bottom"
+				ui:FrameworkElementExtensions.Cursor="SizeNorthSouth"
+				Fill="Transparent"
+				ManipulationMode="TranslateRailsY"
+				PointerCaptureLost="TopLeftResizeCorner_OnPointerCaptureLost"
+				PointerMoved="VertialResizeLine_OnPointerMoved"
+				PointerPressed="ResizeLine_OnPointerPressed"
+				PointerReleased="ResizeLine_OnPointerReleased"
+				Visibility="Collapsed" />
+
+			<Rectangle
+				x:Name="BottomResizeLine"
+				Height="{StaticResource ResizeCornerSize}"
+				Margin="25,-13"
+				HorizontalAlignment="Stretch"
+				VerticalAlignment="Top"
+				ui:FrameworkElementExtensions.Cursor="SizeNorthSouth"
+				Fill="Transparent"
+				ManipulationMode="TranslateRailsY"
+				PointerCaptureLost="TopLeftResizeCorner_OnPointerCaptureLost"
+				PointerMoved="VertialResizeLine_OnPointerMoved"
+				PointerPressed="ResizeLine_OnPointerPressed"
+				PointerReleased="ResizeLine_OnPointerReleased"
+				Visibility="Collapsed" />
+
+			<Rectangle
+				x:Name="RightResizeLine"
+				Width="{StaticResource ResizeCornerSize}"
+				Margin="-13,25"
+				HorizontalAlignment="Left"
+				VerticalAlignment="Stretch"
+				ui:FrameworkElementExtensions.Cursor="SizeWestEast"
+				Fill="Transparent"
+				ManipulationMode="TranslateRailsX"
+				PointerCaptureLost="TopLeftResizeCorner_OnPointerCaptureLost"
+				PointerMoved="HorizontalResizeLine_OnPointerMoved"
+				PointerPressed="ResizeLine_OnPointerPressed"
+				PointerReleased="ResizeLine_OnPointerReleased"
+				Visibility="Collapsed" />
+
+			<Rectangle
+				x:Name="BottomRightResizeCorner"
+				Width="{StaticResource ResizeCornerSize}"
+				Height="{StaticResource ResizeCornerSize}"
+				Margin="-7"
+				HorizontalAlignment="Right"
+				VerticalAlignment="Bottom"
+				ui:FrameworkElementExtensions.Cursor="SizeNorthwestSoutheast"
+				Fill="Transparent"
+				PointerCaptureLost="TopLeftResizeCorner_OnPointerCaptureLost"
+				PointerMoved="BottomRightResizeCorner_OnPointerMoved"
+				PointerPressed="ResizeLine_OnPointerPressed"
+				PointerReleased="ResizeLine_OnPointerReleased"
+				RenderTransformOrigin="0.5 0.5" />
+
+			<Rectangle
+				x:Name="TopRightResizeCorner"
+				Width="{StaticResource ResizeCornerSize}"
+				Height="{StaticResource ResizeCornerSize}"
+				Margin="-7"
+				HorizontalAlignment="Right"
+				VerticalAlignment="Top"
+				ui:FrameworkElementExtensions.Cursor="SizeNortheastSouthwest"
+				Fill="Transparent"
+				PointerCaptureLost="TopLeftResizeCorner_OnPointerCaptureLost"
+				PointerMoved="BottomRightResizeCorner_OnPointerMoved"
+				PointerPressed="ResizeLine_OnPointerPressed"
+				PointerReleased="ResizeLine_OnPointerReleased"
+				RenderTransformOrigin="0.5 0.5" />
+
+			<Rectangle
+				x:Name="BottomLeftResizeCorner"
+				Width="{StaticResource ResizeCornerSize}"
+				Height="{StaticResource ResizeCornerSize}"
+				Margin="-7"
+				HorizontalAlignment="Left"
+				VerticalAlignment="Bottom"
+				ui:FrameworkElementExtensions.Cursor="SizeNortheastSouthwest"
+				Fill="Transparent"
+				PointerCaptureLost="TopLeftResizeCorner_OnPointerCaptureLost"
+				PointerMoved="BottomRightResizeCorner_OnPointerMoved"
+				PointerPressed="ResizeLine_OnPointerPressed"
+				PointerReleased="ResizeLine_OnPointerReleased"
+				RenderTransformOrigin="0.5 0.5" />
+
+			<Rectangle
+				x:Name="TopLeftResizeCorner"
+				Width="{StaticResource ResizeCornerSize}"
+				Height="{StaticResource ResizeCornerSize}"
+				Margin="-7,-7,0,0"
+				HorizontalAlignment="Left"
+				VerticalAlignment="Top"
+				ui:FrameworkElementExtensions.Cursor="SizeNorthwestSoutheast"
+				Fill="Transparent"
+				PointerCaptureLost="TopLeftResizeCorner_OnPointerCaptureLost"
+				PointerMoved="BottomRightResizeCorner_OnPointerMoved"
+				PointerPressed="ResizeLine_OnPointerPressed"
+				PointerReleased="ResizeLine_OnPointerReleased"
+				RenderTransformOrigin="0.5 0.5" />
+		</Grid>
+	</Grid>
+
+</UserControl>

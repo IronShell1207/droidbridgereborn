@@ -12,13 +12,8 @@
     <EnableMsixTooling>true</EnableMsixTooling>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="Assets\Fonts\NunitoSans.ttf" />
-    <None Remove="Resources\ColorDictionary.xaml" />
-    <None Remove="Resources\FontDictionary.xaml" />
     <None Remove="Resources\ImagesDictionary.xaml" />
-    <None Remove="Resources\Styles\FlatStyles\FlatStylesDictionary.xaml" />
     <None Remove="Resources\Styles\GenericStyles.xaml" />
-    <None Remove="Resources\Styles\TextStylesDictionary.xaml" />
     <None Remove="Resources\VectorsDictionary.xaml" />
   </ItemGroup>
 
@@ -36,10 +31,10 @@
    
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.3233" />
 
-    <PackageReference Include="Microsoft.AppCenter" Version="5.0.5" />
-    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="5.0.5" />
-    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="5.0.5" />
-    <PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.7" />
+    <PackageReference Include="Microsoft.AppCenter" Version="5.0.3" />
+    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="5.0.3" />
+    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="5.0.3" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.3" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
 
     <PackageReference Include="Microsoft.Graphics.Win2D" Version="1.2.0" />
@@ -57,9 +52,9 @@
     <PackageReference Include="H.NotifyIcon.WinUI" Version="2.0.108" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.0.9" />
 
-    <PackageReference Include="Serilog" Version="4.0.0" />
-    <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
-    <PackageReference Include="System.Drawing.Common" Version="8.0.7" />
+    <PackageReference Include="Serilog" Version="3.1.1" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="5.0.1" />
+    <PackageReference Include="System.Drawing.Common" Version="8.0.3" />
     <PackageReference Include="WinUIEx" Version="2.3.4" />
     <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
@@ -74,9 +69,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AdbCore\AdbCore.csproj" />
-    <ProjectReference Include="..\CustomControlsLib\CustomControlsLib.csproj" />
-    <ProjectReference Include="..\ObjectResizerBase\ObjectResizerBase.csproj" />
-    <ProjectReference Include="..\SystemHelpers\SystemHelpers.csproj" />
     <ProjectReference Include="..\Utils\Utils.csproj" />
   </ItemGroup>
   <ItemGroup>
@@ -90,29 +82,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Content Update="Assets\Fonts\NunitoSans.ttf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="Resources\Styles\FlatStyles\FlatStylesDictionary.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="Resources\ColorDictionary.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="Resources\Styles\TextStylesDictionary.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="Resources\FontDictionary.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <Folder Include="Assets\Fonts\" />
+    <Folder Include="Resources\Styles\FlatStyles\" />
   </ItemGroup>
   <ItemGroup>
     <Page Update="Resources\Styles\GenericStyles.xaml">
@@ -127,23 +98,5 @@
   -->
   <PropertyGroup Condition="'$(DisableHasPackageAndPublishMenuAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <HasPackageAndPublishMenu>true</HasPackageAndPublishMenu>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
-    <DefineConstants>$(DefineConstants);WIN_APP_SDK</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <DefineConstants>$(DefineConstants);WIN_APP_SDK</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
-    <DefineConstants>$(DefineConstants);WIN_APP_SDK</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
-    <DefineConstants>$(DefineConstants);WIN_APP_SDK</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <DefineConstants>$(DefineConstants);WIN_APP_SDK</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
-    <DefineConstants>$(DefineConstants);WIN_APP_SDK</DefineConstants>
   </PropertyGroup>
 </Project>

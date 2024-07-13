@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net7.0-windows10.0.19041.0</TargetFramework>
+    <TargetPlatformMinVersion>10.0.19041.0</TargetPlatformMinVersion>
+    <RootNamespace>ObjectResizerBase</RootNamespace>
+    <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
+    <UseWinUI>true</UseWinUI>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Controls\ResizeHelperControl.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+      <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+      <PackageReference Include="CommunityToolkit.WinUI.UI" Version="7.1.2" />
+	  <PackageReference Include="Microsoft.Graphics.Win2D" Version="1.2.0" />
+      <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.5.240627000" />
+      <PackageReference Include="CommunityToolkit.WinUI.UI.Controls" Version="7.1.2" />
+      <PackageReference Include="CommunityToolkit.WinUI.UI.Media" Version="7.1.2" />
+      <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.3233" />
+      <PackageReference Include="Serilog" Version="4.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Controls\ResizeHelperControl.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>

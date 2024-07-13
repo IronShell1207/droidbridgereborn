@@ -1,16 +1,24 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <Application
-    x:Class="DroidBridgeReborn.App"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:DroidBridgeReborn">
-    <Application.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
-                <!-- Other merged dictionaries here -->
-            </ResourceDictionary.MergedDictionaries>
-            <!-- Other app resources here -->
-        </ResourceDictionary>
-    </Application.Resources>
+	x:Class="DroidBridgeReborn.App"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:local="using:DroidBridgeReborn">
+	<Application.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
+				<ResourceDictionary Source="/Resources/VectorsDictionary.xaml" />
+				<ResourceDictionary Source="/Resources/ImagesDictionary.xaml" />
+				<ResourceDictionary Source="/Resources/ColorDictionary.xaml"/>
+				<ResourceDictionary Source="/Resources/FontDictionary.xaml" />
+				<ResourceDictionary Source="/Resources/Styles/TextStylesDictionary.xaml" />
+				<ResourceDictionary Source="/Resources/Styles/GenericStyles.xaml" />
+				
+				<ResourceDictionary Source="/Resources/Styles/FlatStyles/FlatStylesDictionary.xaml" />
+
+			</ResourceDictionary.MergedDictionaries>
+			<!--  Other app resources here  -->
+		</ResourceDictionary>
+	</Application.Resources>
 </Application>
