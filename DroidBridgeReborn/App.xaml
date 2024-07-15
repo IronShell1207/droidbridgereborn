@@ -10,11 +10,12 @@
 				<XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
 				<ResourceDictionary Source="/Resources/VectorsDictionary.xaml" />
 				<ResourceDictionary Source="/Resources/ImagesDictionary.xaml" />
-				<ResourceDictionary Source="/Resources/ColorDictionary.xaml"/>
+				<ResourceDictionary Source="/Resources/ColorDictionary.xaml" />
 				<ResourceDictionary Source="/Resources/FontDictionary.xaml" />
+				<ResourceDictionary Source="/Resources/Styles/FlatStyles/FlatRadialGuageStyle.xaml" />
 				<ResourceDictionary Source="/Resources/Styles/TextStylesDictionary.xaml" />
 				<ResourceDictionary Source="/Resources/Styles/GenericStyles.xaml" />
-				
+
 				<ResourceDictionary Source="/Resources/Styles/FlatStyles/FlatStylesDictionary.xaml" />
 
 			</ResourceDictionary.MergedDictionaries>

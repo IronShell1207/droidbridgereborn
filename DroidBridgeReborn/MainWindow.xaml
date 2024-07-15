@@ -13,24 +13,131 @@
 		<models:BlurredBackdrop />
 	</Window.SystemBackdrop>
 
-	<Grid Background="{ThemeResource MainBackgroundShadowColor}" Loaded="FrameworkElement_OnLoaded">
-		<Grid.RowDefinitions>
-			<RowDefinition Height="*" />
-		</Grid.RowDefinitions>
-		<Grid>
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="300" />
-				<ColumnDefinition Width="*" />
-			</Grid.ColumnDefinitions>
-			<Grid Padding="20" Background="{ThemeResource SidePanelBackColor}">
-				<StackPanel >
+	<Grid>
+		<Image
+			HorizontalAlignment="Left"
+			VerticalAlignment="Center"
+			Source="{StaticResource _mainBgImage}"
+			Stretch="UniformToFill" />
+		<Grid Background="{ThemeResource MainBackgroundShadowColor}" Loaded="FrameworkElement_OnLoaded">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*" />
+			</Grid.RowDefinitions>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="250" />
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+				<Grid Padding="20" Background="{ThemeResource SidePanelBackColor}">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="*" />
+						<RowDefinition Height="Auto" />
+					</Grid.RowDefinitions>
 
-				</StackPanel>
+					<Grid
+						Margin="10"
+						HorizontalAlignment="Left"
+						Grid.ColumnSpacing="15">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto" />
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+						<BitmapIcon
+							Width="32"
+							Height="32"
+							UriSource="/Assets/Icons/android-icon.png" />
+
+						<TextBlock
+							Grid.Column="1"
+							HorizontalAlignment="Left"
+							VerticalAlignment="Center"
+							FontFamily="{StaticResource Champagne-Limousines-Bold}"
+							FontSize="20"
+							FontWeight="Bold"
+							Opacity="0.8"
+							Text="Droid Bridge" />
+					</Grid>
+					<StackPanel
+						Grid.Row="1"
+						Margin="15,20"
+						Spacing="10">
+						<Button Height="40" Style="{StaticResource FlatButtonAlignedStyle}">
+							<Grid Grid.ColumnSpacing="20">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="34" />
+									<ColumnDefinition Width="*" />
+								</Grid.ColumnDefinitions>
+								<Viewbox Height="25">
+									<Path Data="{StaticResource DeviceIconVector}" Fill="White" />
+								</Viewbox>
+								<TextBlock
+									Grid.Column="1"
+									VerticalAlignment="Center"
+									FontFamily="{StaticResource Raleway}"
+									FontSize="16"
+									Text="Device" />
+							</Grid>
+						</Button>
+
+						<Button Height="40" Style="{StaticResource FlatButtonAlignedStyle}">
+							<Grid Grid.ColumnSpacing="20">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="34" />
+									<ColumnDefinition Width="*" />
+								</Grid.ColumnDefinitions>
+								<Viewbox Width="25" Height="25">
+									<Path
+										Data="{StaticResource _folderIconVector}"
+										Stroke="White"
+										StrokeEndLineCap="Round"
+										StrokeStartLineCap="Round"
+										StrokeThickness="66" />
+								</Viewbox>
+								<TextBlock
+									Grid.Column="1"
+									VerticalAlignment="Center"
+									FontFamily="{StaticResource Raleway}"
+									FontSize="16"
+									Text="File transfer" />
+							</Grid>
+						</Button>
+					</StackPanel>
+
+					<Button
+						Grid.Row="3"
+						Height="40"
+						Margin="15,0"
+						Style="{StaticResource FlatButtonAlignedStyle}">
+						<Grid Grid.ColumnSpacing="20">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="34" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<Viewbox Width="25" Height="25">
+								<Path
+									Data="{StaticResource _settingsIconVector}"
+									Stroke="White"
+									StrokeEndLineCap="Round"
+									StrokeStartLineCap="Round"
+									StrokeThickness="66" />
+							</Viewbox>
+							<TextBlock
+								Grid.Column="1"
+								VerticalAlignment="Center"
+								FontFamily="{StaticResource Raleway}"
+								FontSize="16"
+								Text="Settings" />
+						</Grid>
+					</Button>
+
+				</Grid>
+				<Grid Grid.Column="1" Margin="0 50 0 0">
+					<Frame x:Name="_mainFrame" />
+				</Grid>
 			</Grid>
-			<Grid Grid.Column="1">
-				<Frame x:Name="_mainFrame"/>
-			</Grid>
+			<ContentPresenter x:Name="_dialogsPresenter" />
 		</Grid>
-		<ContentPresenter x:Name="_dialogsPresenter"/>
 	</Grid>
 </winUiEx:WindowEx>

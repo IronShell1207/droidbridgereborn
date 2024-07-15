@@ -5,4 +5,6 @@
 	xmlns:local="using:DroidBridgeReborn.Resources">
 
 	<FontFamily x:Key="Nunito">ms-appx:///Assets/Fonts/NunitoSans.ttf#Nunito Sans</FontFamily>
+	<FontFamily x:Key="Champagne-Limousines-Bold">ms-appx:///Assets/Fonts/Champagne-Limousines-Bold.ttf#Champagne &amp; Limousines</FontFamily>
+	<FontFamily x:Key="Raleway">ms-appx:///Assets/Fonts/Raleway.ttf#Raleway</FontFamily>
 </ResourceDictionary>

@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ResourceDictionary
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:DroidBridgeReborn.Resources">
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:local="using:DroidBridgeReborn.Resources">
 
-	<SolidColorBrush x:Key="SidePanelBackColor" Color="#aa1a151e"/>
-	<SolidColorBrush x:Key="MainBackgroundShadowColor" Color="#74000000"/>
+	<SolidColorBrush x:Key="SidePanelBackColor" Color="#991a151e" />
+	<SolidColorBrush x:Key="MainBackgroundShadowColor" Color="#44000000" />
+	<SolidColorBrush x:Key="DeviceInfoPanelBackground" Color="#8a353f4f"/>
 </ResourceDictionary>

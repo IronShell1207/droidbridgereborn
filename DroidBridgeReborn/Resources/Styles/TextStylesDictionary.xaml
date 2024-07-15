@@ -9,4 +9,17 @@
 		<ResourceDictionary Source="/Resources/FontDictionary.xaml" />
 	</ResourceDictionary.MergedDictionaries>
 
+	<!-- Стиль з. -->
+	<Style TargetType="TextBlock" x:Key="TileHeaderTextStyle">
+		<Setter Property="FontFamily" Value="{StaticResource Raleway}" />
+		<Setter Property="FontSize" Value="20" />
+		<Setter Property="FontWeight" Value="Medium" />
+	</Style>
+
+	<!-- Стиль summ. -->
+	<Style TargetType="TextBlock" x:Key="TileTextsStyle">
+		<Setter Property="FontFamily" Value="{StaticResource Nunito}" />
+		<Setter Property="FontSize" Value="14" />
+		<Setter Property="Opacity" Value="0.7" />
+	</Style>
 </ResourceDictionary>

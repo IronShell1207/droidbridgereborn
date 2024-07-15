@@ -3,6 +3,7 @@ using CustomControlsLib.Helpers;
 namespace DroidBridgeReborn
 {
 	using DroidBridgeReborn.Helpers;
+	using DroidBridgeReborn.Views.Pages;
 	using Microsoft.UI.Xaml;
 	using WinUIEx;
 
@@ -17,11 +18,15 @@ namespace DroidBridgeReborn
 			ExtendsContentIntoTitleBar = true;
 		}
 
-
+		/// <summary>
+		/// Обрабатывает загрузку.
+		/// </summary>
 		private void FrameworkElement_OnLoaded(object sender, RoutedEventArgs e)
 		{
 			NavigationHelper.SetupNavigationFrame(_mainFrame);
 			CustomDialogsHelper.SetDialogContainer(_dialogsPresenter);
+			
+			NavigationHelper.NavigateTo(typeof(DevicePage));
 		}
 	}
 }

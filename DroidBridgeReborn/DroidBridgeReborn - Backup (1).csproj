@@ -12,37 +12,21 @@
     <EnableMsixTooling>true</EnableMsixTooling>
   </PropertyGroup>
   <ItemGroup>
+    <Content Remove="Assets\Images\DeviceStates\not_connected.png" />
+  </ItemGroup>
+  <ItemGroup>
     <None Remove="Assets\Fonts\Champagne-Limousines-Bold.ttf" />
     <None Remove="Assets\Fonts\NunitoSans.ttf" />
-    <None Remove="Assets\Fonts\Raleway.ttf" />
-    <None Remove="Assets\Icons\add-device.svg" />
     <None Remove="Assets\Icons\android-icon.png" />
-    <None Remove="Assets\Icons\android.svg" />
-    <None Remove="Assets\Icons\connect.svg" />
-    <None Remove="Assets\Icons\settings_cog_ic.svg" />
-    <None Remove="Assets\Icons\upload.svg" />
     <None Remove="Assets\Images\291058.png" />
-    <None Remove="Assets\Images\charging-270.png" />
-    <None Remove="Assets\Images\charging.png" />
-    <None Remove="Assets\Images\DeviceStates\connected.png" />
-    <None Remove="Assets\Images\DeviceStates\not_connected.png" />
-    <None Remove="Assets\Images\DeviceStates\not_connected_icon.png" />
     <None Remove="Assets\Images\shadowy-jungle-rhythms-stocktune.jpg" />
-    <None Remove="Assets\Images\wireless-charging-270.png" />
-    <None Remove="Assets\Images\wireless-charging.png" />
     <None Remove="Resources\ColorDictionary.xaml" />
     <None Remove="Resources\FontDictionary.xaml" />
     <None Remove="Resources\ImagesDictionary.xaml" />
-    <None Remove="Resources\Styles\FlatStyles\FlatRadialGuageStyle.xaml" />
     <None Remove="Resources\Styles\FlatStyles\FlatStylesDictionary.xaml" />
     <None Remove="Resources\Styles\GenericStyles.xaml" />
     <None Remove="Resources\Styles\TextStylesDictionary.xaml" />
     <None Remove="Resources\VectorsDictionary.xaml" />
-    <None Remove="Views\Controls\PanelControls\ApplicationManagerButton.xaml" />
-    <None Remove="Views\Controls\PanelControls\BatteryPresenterPanel.xaml" />
-    <None Remove="Views\Controls\PanelControls\FileExchangeButton.xaml" />
-    <None Remove="Views\Controls\PanelControls\RemoteControlButton.xaml" />
-    <None Remove="Views\Pages\DevicePage.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -119,74 +103,15 @@
     <Content Update="Assets\Fonts\NunitoSans.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Update="Assets\Fonts\Raleway.ttf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="Assets\Icons\add-device.svg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Update="Assets\Icons\android-icon.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="Assets\Icons\android.svg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="Assets\Icons\connect.svg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="Assets\Icons\settings_cog_ic.svg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="Assets\Icons\upload.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="Assets\Images\291058.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Update="Assets\Images\charging-270.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="Assets\Images\charging.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="Assets\Images\DeviceStates\connected.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="Assets\Images\DeviceStates\not_connected.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="Assets\Images\DeviceStates\not_connected_icon.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Update="Assets\Images\shadowy-jungle-rhythms-stocktune.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Update="Assets\Images\wireless-charging-270.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="Assets\Images\wireless-charging.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="Resources\Styles\FlatStyles\FlatRadialGuageStyle.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="Views\Controls\PanelControls\FileExchangeButton.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="Views\Controls\PanelControls\ApplicationManagerButton.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="Views\Controls\PanelControls\RemoteControlButton.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Resources\Styles\FlatStyles\FlatStylesDictionary.xaml">
@@ -214,14 +139,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Views\Pages\DevicePage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="Views\Controls\PanelControls\BatteryPresenterPanel.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <Folder Include="Views\" />
   </ItemGroup>
 
   <!-- 

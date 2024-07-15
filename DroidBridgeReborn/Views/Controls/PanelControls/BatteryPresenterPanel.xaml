@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<UserControl
+	x:Class="DroidBridgeReborn.Views.Controls.PanelControls.BatteryPresenterPanel"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="using:DroidBridgeReborn.Views.Controls.PanelControls"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d">
+
+	<Grid
+		Height="270"
+		Padding="0"
+		Style="{StaticResource TileGridStyle}">
+		<Image
+			Height="100"
+			Margin="20,35,10,20"
+			HorizontalAlignment="Right"
+			VerticalAlignment="Top"
+			Opacity="0.15"
+			Source="{StaticResource _chargingImage}"
+			Visibility="{x:Bind IsCharging, Mode=OneWay}" />
+		<Image
+			Height="100"
+			Margin="20,35,20,20"
+			HorizontalAlignment="Right"
+			VerticalAlignment="Top"
+			Opacity="0.15"
+			Source="{StaticResource _wirelessChargingImage}"
+			Visibility="{x:Bind IsWirelessCharging, Mode=OneWay}" />
+		<Grid>
+
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="*" />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+			<controls:RadialGauge
+				Grid.Row="2"
+				Height="200"
+				Margin="0,0,0,-40"
+				Foreground="Transparent"
+				IsInteractive="True"
+				MaxAngle="90"
+				Maximum="100"
+				MinAngle="-90"
+				Minimum="0"
+				NeedleWidth="0"
+				ScaleBrush="Gray"
+				ScaleTickBrush="Transparent"
+				ScaleWidth="20"
+				Style="{StaticResource _CUSTOMRadialGuage}"
+				TickBrush="Transparent"
+				TrailBrush="#a9dfd8"
+				Value="15" />
+
+			<TextBlock
+				Grid.Row="2"
+				Margin="0,0,0,-50"
+				HorizontalAlignment="Center"
+				VerticalAlignment="Center"
+				FontFamily="{StaticResource Nunito}"
+				FontSize="30"
+				FontWeight="Medium"
+				Text="80%" />
+			<StackPanel Margin="25,25,0,0" Spacing="5">
+				<TextBlock
+					VerticalAlignment="Center"
+					Style="{StaticResource TileHeaderTextStyle}"
+					Text="Battery" />
+				<TextBlock Margin="0,5,0,0" Style="{StaticResource TileTextsStyle}">
+					<Run Text="Temperature:" />
+					<Run Text="33C" />
+				</TextBlock>
+				<TextBlock Style="{StaticResource TileTextsStyle}">
+					<Run Text="Charging rate:" />
+					<Run Text="15w" />
+				</TextBlock>
+				<TextBlock Style="{StaticResource TileTextsStyle}">
+					<Run Text="Charging voltage:" />
+					<Run Text="5V 3A" />
+				</TextBlock>
+			</StackPanel>
+		</Grid>
+	</Grid>
+</UserControl>

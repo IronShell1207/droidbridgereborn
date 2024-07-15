@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<UserControl
+	x:Class="DroidBridgeReborn.Views.Controls.PanelControls.ApplicationManagerButton"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="using:DroidBridgeReborn.Views.Controls.PanelControls"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d">
+
+	<Grid Style="{StaticResource TileGridStyle}">
+		<Viewbox
+			Height="90"
+			Margin="0,0,-10,0"
+			HorizontalAlignment="Right"
+			VerticalAlignment="Bottom"
+			Opacity="0.15">
+			<Image Source="{StaticResource AndroidIcon}" />
+		</Viewbox>
+		<Grid>
+			<StackPanel Margin="10,10,0,0" Spacing="5">
+				<TextBlock Style="{StaticResource TileHeaderTextStyle}" Text="Applications manager" />
+				<TextBlock
+					MaxWidth="170"
+					HorizontalAlignment="Left"
+					Style="{StaticResource TileTextsStyle}"
+					Text="Manage your applications"
+					TextWrapping="Wrap" />
+				<StackPanel Spacing="3">
+					<TextBlock
+						MaxWidth="170"
+						HorizontalAlignment="Left"
+						Style="{StaticResource TileTextsStyle}"
+						Text="- set permissions"
+						TextWrapping="Wrap" />
+					<TextBlock
+						MaxWidth="170"
+						HorizontalAlignment="Left"
+						Style="{StaticResource TileTextsStyle}"
+						Text="- removal or freezing"
+						TextWrapping="Wrap" />
+					<TextBlock
+						MaxWidth="170"
+						HorizontalAlignment="Left"
+						Style="{StaticResource TileTextsStyle}"
+						Text="- data manage"
+						TextWrapping="Wrap" />
+				</StackPanel>
+			</StackPanel>
+		</Grid>
+	</Grid>
+</UserControl>
