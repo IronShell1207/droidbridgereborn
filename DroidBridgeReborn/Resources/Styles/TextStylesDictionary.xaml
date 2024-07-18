@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:local="using:DroidBridgeReborn.Resources.Styles">
+	<ResourceDictionary.MergedDictionaries>
+		<ResourceDictionary Source="/Resources/VectorsDictionary.xaml" />
+		<ResourceDictionary Source="/Resources/ImagesDictionary.xaml" />
+		<ResourceDictionary Source="/Resources/FontDictionary.xaml" />
+	</ResourceDictionary.MergedDictionaries>
+
+	<!-- Стиль з. -->
+	<Style TargetType="TextBlock" x:Key="TileHeaderTextStyle">
+		<Setter Property="FontFamily" Value="{StaticResource Raleway}" />
+		<Setter Property="FontSize" Value="20" />
+		<Setter Property="FontWeight" Value="Medium" />
+	</Style>
+
+	<!-- Стиль summ. -->
+	<Style TargetType="TextBlock" x:Key="TileTextsStyle">
+		<Setter Property="FontFamily" Value="{StaticResource Nunito}" />
+		<Setter Property="FontSize" Value="14" />
+		<Setter Property="Opacity" Value="0.7" />
+	</Style>
+</ResourceDictionary>

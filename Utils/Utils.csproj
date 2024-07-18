@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net7.0-windows10.0.19041.0</TargetFramework>
+    <TargetPlatformMinVersion>10.0.19041.0</TargetPlatformMinVersion>
+    <RootNamespace>Utils</RootNamespace>
+    <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
+    <UseWinUI>true</UseWinUI>
+  </PropertyGroup>
+
+  <ItemGroup>
+	  <PackageReference Include="WinUIEx" Version="2.3.4" />
+	  <PackageReference Include="Serilog" Version="4.0.0" />
+	  <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.5.240627000" />
+      <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.3233" />
+	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+	  <PackageReference Include="CommunityToolkit.WinUI" Version="7.1.2" />
+	  <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+	  <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
+  </ItemGroup>
+</Project>

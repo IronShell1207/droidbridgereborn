@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:local="using:DroidBridgeReborn.Resources">
+
+	<FontFamily x:Key="Nunito">ms-appx:///Assets/Fonts/NunitoSans.ttf#Nunito Sans</FontFamily>
+	<FontFamily x:Key="Champagne-Limousines-Bold">ms-appx:///Assets/Fonts/Champagne-Limousines-Bold.ttf#Champagne &amp; Limousines</FontFamily>
+	<FontFamily x:Key="Raleway">ms-appx:///Assets/Fonts/Raleway.ttf#Raleway</FontFamily>
+</ResourceDictionary>

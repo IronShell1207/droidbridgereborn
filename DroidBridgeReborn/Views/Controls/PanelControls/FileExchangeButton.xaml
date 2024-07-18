@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Button
+	x:Class="DroidBridgeReborn.Views.Controls.PanelControls.FileExchangeButton"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="using:DroidBridgeReborn.Views.Controls.PanelControls"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d"
+	Style="{StaticResource DeviceTileButtonAlignedStyle}">
+
+	<Grid>
+		<Viewbox
+			Height="90"
+			Margin="0,8,0,0"
+			HorizontalAlignment="Right"
+			VerticalAlignment="Center"
+			Opacity="0.15">
+			<Image Source="{StaticResource UploadIcon}" />
+		</Viewbox>
+		<Grid>
+			<StackPanel Margin="10,10,0,0" Spacing="5">
+				<TextBlock Style="{StaticResource TileHeaderTextStyle}" Text="File manager" />
+				<TextBlock
+					MaxWidth="170"
+					Margin="0,8,0,0"
+					HorizontalAlignment="Left"
+					Style="{StaticResource TileTextsStyle}"
+					Text="Send or receive files"
+					TextWrapping="Wrap" />
+				<StackPanel Spacing="3">
+					<TextBlock
+						MaxWidth="170"
+						HorizontalAlignment="Left"
+						Style="{StaticResource TileTextsStyle}"
+						Text="- upload to device"
+						TextWrapping="Wrap" />
+					<TextBlock
+						MaxWidth="170"
+						HorizontalAlignment="Left"
+						Style="{StaticResource TileTextsStyle}"
+						Text="- download from device"
+						TextWrapping="Wrap" />
+				</StackPanel>
+			</StackPanel>
+		</Grid>
+	</Grid>
+</Button>

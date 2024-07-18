@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Button
+	x:Class="DroidBridgeReborn.Views.Controls.PanelControls.RemoteControlButton"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="using:DroidBridgeReborn.Views.Controls.PanelControls"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d"
+	Style="{StaticResource DeviceTileButtonAlignedStyle}">
+
+	<Grid>
+		<Viewbox
+			Height="80"
+			Margin="10,0,0,0"
+			HorizontalAlignment="Left"
+			VerticalAlignment="Bottom"
+			Opacity="0.15">
+			<Image Source="{StaticResource RemoteConnectIcon}" />
+		</Viewbox>
+		<Grid>
+			<StackPanel Margin="10,10,0,0" Spacing="5">
+				<TextBlock Style="{StaticResource TileHeaderTextStyle}" Text="Remote Control" />
+				<TextBlock
+					MaxWidth="170"
+					HorizontalAlignment="Left"
+					Style="{StaticResource TileTextsStyle}"
+					Text="Connect to control device remotely"
+					TextWrapping="Wrap" />
+			</StackPanel>
+			<Button
+				MinWidth="140"
+				Padding="26,8"
+				HorizontalAlignment="Right"
+				VerticalAlignment="Bottom"
+				Background="#5a5664"
+				CornerRadius="10">
+				<TextBlock FontFamily="{StaticResource Nunito}" Text="Connect" />
+			</Button>
+			<Button
+				Margin="0,10,5,0"
+				HorizontalAlignment="Right"
+				VerticalAlignment="Top"
+				Style="{StaticResource FlatButtonAlignedStyle}">
+				<Viewbox Width="25" Height="20">
+					<Image Source="{StaticResource SettignsCogIcon}" />
+				</Viewbox>
+			</Button>
+		</Grid>
+	</Grid>
+</Button>
