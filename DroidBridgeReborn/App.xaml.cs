@@ -1,50 +1,93 @@
-﻿// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
+﻿using AdbCore.Abstraction;
 
 namespace DroidBridgeReborn
 {
+	using AdbCore.Service;
+	using DroidBridgeReborn.Helpers;
+	using Microsoft.Extensions.DependencyInjection;
 	using Microsoft.UI.Xaml;
-	using Microsoft.UI.Xaml.Controls;
-	using Microsoft.UI.Xaml.Controls.Primitives;
-	using Microsoft.UI.Xaml.Data;
-	using Microsoft.UI.Xaml.Input;
-	using Microsoft.UI.Xaml.Media;
-	using Microsoft.UI.Xaml.Navigation;
-	using Microsoft.UI.Xaml.Shapes;
+	using Serilog;
+	using Serilog.Sinks.SystemConsole.Themes;
 	using System;
-	using System.Collections.Generic;
-	using System.IO;
-	using System.Linq;
-	using System.Runtime.InteropServices.WindowsRuntime;
-	using Windows.ApplicationModel;
-	using Windows.ApplicationModel.Activation;
-	using Windows.Foundation;
-	using Windows.Foundation.Collections;
+	using System.Threading.Tasks;
+	using SystemHelpers.Static;
+	using Win.Utils.Helpers;
 
-	/// <summary>
-	/// Provides application-specific behavior to supplement the default Application class.
-	/// </summary>
 	public partial class App : Application
 	{
-		/// <summary>
-		/// Initializes the singleton application object.  This is the first line of authored code
-		/// executed, and as such is the logical equivalent of main() or WinMain().
-		/// </summary>
+		private static bool _servicesInitialized = false;
+		public static MainWindow MainWindow { get; private set; }
+		public static IServiceProvider ServiceProvider { get; private set; }
+
 		public App()
 		{
 			this.InitializeComponent();
+			SetupLogger();
+			ConfigureServices();
+			DispatcherQueueHelper.SetCurrentThread();
+#if !DEBUG
+			UnhandledException += App_UnhandledException;
+#endif
 		}
 
-		/// <summary>
-		/// Invoked when the application is launched.
-		/// </summary>
-		/// <param name="args">Details about the launch request and process.</param>
-		protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
+		private void SetupLogger()
 		{
-			m_window = new MainWindow();
-			m_window.Activate();
+#if DEBUG
+			PinvokeWindowMethods.AllocConsole();
+#endif
+			Log.Logger = new LoggerConfiguration().MinimumLevel.Verbose()
+				.WriteTo.Console(theme: AnsiConsoleTheme.Code)
+				.CreateLogger();
 		}
 
-		private Window m_window;
+		public static async void CreateMainWindow()
+		{
+			MainWindow = new MainWindow();
+			MainWindow.Activate();
+
+			if (_servicesInitialized)
+			{
+				//MainWindow.Initialize();
+			}
+		}
+
+		public async Task InitializeServices()
+		{
+			if (_servicesInitialized)
+				return;
+
+			var adbService = ServiceProvider.GetRequiredService<IADBServiceMonitor>();
+			adbService.Initialize(SettingsHelper.GetAdbUpdateInterval());
+			_servicesInitialized = true;
+		}
+
+		protected override async void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
+		{
+			string[] cmdLaunchArgs = Environment.GetCommandLineArgs();
+
+			if (!CheckSecondStart(cmdLaunchArgs))
+				return;
+
+			base.OnLaunched(args);
+
+			if (SettingsHelper.IsStartingMinimizedSetting.Value == false)
+				CreateMainWindow();
+
+			await InitializeServices();
+
+			if (MainWindow != null)
+			{
+				//MainWindow.Initialize();
+			}
+		}
+
+		private void ConfigureServices()
+		{
+			var services = new ServiceCollection();
+			services.AddSingleton<IADBServiceMonitor, ADBServiceMonitor>();
+			ServiceProvider = services.BuildServiceProvider();
+			
+			Log.Logger.Information("Services initialized");
+		}
 	}
 }
