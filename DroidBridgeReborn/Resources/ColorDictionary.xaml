@@ -7,4 +7,5 @@
 	<SolidColorBrush x:Key="SidePanelBackColor" Color="#991a151e" />
 	<SolidColorBrush x:Key="MainBackgroundShadowColor" Color="#44000000" />
 	<SolidColorBrush x:Key="DeviceInfoPanelBackground" Color="#8a353f4f"/>
+	<SolidColorBrush x:Key="LighterDeviceInfoPanelBackground" Color="#da353f4f"/>
 </ResourceDictionary>

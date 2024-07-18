@@ -18,7 +18,7 @@ using Microsoft.UI.Xaml.Navigation;
 
 namespace DroidBridgeReborn.Views.Controls.PanelControls
 {
-    public sealed partial class FileExchangeButton : UserControl
+    public sealed partial class FileExchangeButton : Button
     {
         public FileExchangeButton()
         {

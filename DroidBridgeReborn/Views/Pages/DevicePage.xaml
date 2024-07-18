@@ -14,7 +14,9 @@
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="*" />
+			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
+
 
 		<Grid
 			Height="50"
@@ -42,6 +44,7 @@
 				<TextBlock FontFamily="{StaticResource Raleway}" Text="Connect" />
 			</Button>
 		</Grid>
+
 		<ScrollViewer Grid.Row="1">
 			<RelativePanel>
 				<Grid RelativePanel.AlignVerticalCenterWithPanel="False">
@@ -70,8 +73,11 @@
 								<RowDefinition Height="Auto" />
 							</Grid.RowDefinitions>
 							<StackPanel Spacing="3">
-								<TextBlock Style="{StaticResource TileHeaderTextStyle}" Text="Device (add disconnect and more options buttons) " />
-								<TextBlock FontFamily="{StaticResource Raleway}" Text="Xiaomi 13 Ultra" />
+								<TextBlock Style="{StaticResource TileHeaderTextStyle}" Text="Device (add disconnect and more options buttons) adb shell getprop" />
+								<TextBlock FontFamily="{StaticResource Raleway}" Text="Xiaomi 13 Ultra [ro.product.manufacturer]: [samsung] [ro.product.model]: [SM-G960F]" />
+								<TextBlock FontFamily="{StaticResource Raleway}" Text="Android [ro.build.version.release]: [10] (SDK) [ro.build.version.sdk]: [29]" />
+								<TextBlock Text="Cpu [ro.hardware.chipname]: [exynos9810]" />
+								<!--  getprop | grep -e 'model' -e 'version.sdk' -e 'manufacturer' -e 'hardware' -e 'platform' -e 'revision' -e 'serialno' -e 'product.name' -e 'brand'  -->
 							</StackPanel>
 							<Viewbox Grid.Row="1" Height="350">
 								<Grid Height="500">
@@ -96,7 +102,43 @@
 							Height="138"
 							Margin="10,10,0,0"
 							Style="{StaticResource TileGridStyle}">
-							<TextBlock Text="Connected devices panel chooser with selected device connection info" TextWrapping="Wrap" />
+							<StackPanel Margin="10,5,0,0" Spacing="5">
+								<TextBlock Style="{StaticResource TileHeaderTextStyle}" Text="Device connection info" />
+								<TextBlock
+									MaxWidth="170"
+									HorizontalAlignment="Left"
+									Style="{StaticResource TileTextsStyle}"
+									TextWrapping="Wrap">
+									<Run Text=" - IP or ID:" />
+									<Run Text="2138192dsad12" />
+								</TextBlock>
+								<StackPanel Spacing="3">
+									<TextBlock
+										MaxWidth="170"
+										HorizontalAlignment="Left"
+										Style="{StaticResource TileTextsStyle}"
+										TextWrapping="Wrap">
+										<Run Text=" - Name:" />
+										<Run Text="SM_G960F" />
+									</TextBlock>
+									<TextBlock
+										MaxWidth="170"
+										HorizontalAlignment="Left"
+										Style="{StaticResource TileTextsStyle}"
+										TextWrapping="Wrap">
+										<Run Text=" - Current mode:" />
+										<Run Text="device" />
+									</TextBlock>
+									<TextBlock
+										MaxWidth="170"
+										HorizontalAlignment="Left"
+										Style="{StaticResource TileTextsStyle}"
+										TextWrapping="Wrap">
+										<Run Text=" - Code name:" />
+										<Run Text="starlteser" />
+									</TextBlock>
+								</StackPanel>
+							</StackPanel>
 						</Grid>
 
 					</StackPanel>
@@ -115,12 +157,12 @@
 
 						<panelControls:ApplicationManagerButton />
 						<panelControls:FileExchangeButton />
-						<Grid Style="{StaticResource TileGridStyle}" Height="270">
+						<Grid Height="270" Style="{StaticResource TileGridStyle}">
 							<TextBlock Text="Device storage info" />
 						</Grid>
 						<panelControls:BatteryPresenterPanel />
 						<Grid Style="{StaticResource TileGridStyle}">
-							<TextBlock Text="Device storage info" />
+							<TextBlock Text="Task manager adb shell dumpsys cpuinfo in other window" />
 						</Grid>
 						<Grid Style="{StaticResource TileGridStyle}">
 							<TextBlock Text="maybe screen recorder with screencap screenrecord" />
@@ -138,5 +180,7 @@
 				</Grid>
 			</RelativePanel>
 		</ScrollViewer>
+
+		<Grid Grid.Row="2" />
 	</Grid>
 </Page>

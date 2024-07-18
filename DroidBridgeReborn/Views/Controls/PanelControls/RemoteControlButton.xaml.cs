@@ -13,12 +13,9 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
-
 namespace DroidBridgeReborn.Views.Controls.PanelControls
 {
-    public sealed partial class RemoteControlButton : UserControl
+    public sealed partial class RemoteControlButton : Button
     {
         public RemoteControlButton()
         {

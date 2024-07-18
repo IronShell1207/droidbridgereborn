@@ -15,7 +15,7 @@ using Microsoft.UI.Xaml.Navigation;
 
 namespace DroidBridgeReborn.Views.Controls.PanelControls
 {
-	public sealed partial class BatteryPresenterPanel : UserControl
+	public sealed partial class BatteryPresenterPanel : Button
 	{
 		/// <summary>
 		/// Свойство зависимости <see cref="BatteryLevelPercent"/>

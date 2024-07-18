@@ -33,6 +33,7 @@
     <None Remove="Resources\ColorDictionary.xaml" />
     <None Remove="Resources\FontDictionary.xaml" />
     <None Remove="Resources\ImagesDictionary.xaml" />
+    <None Remove="Resources\Styles\ButtonDictionary.xaml" />
     <None Remove="Resources\Styles\FlatStyles\FlatRadialGuageStyle.xaml" />
     <None Remove="Resources\Styles\FlatStyles\FlatStylesDictionary.xaml" />
     <None Remove="Resources\Styles\GenericStyles.xaml" />
@@ -167,6 +168,11 @@
     <Content Update="Assets\Images\wireless-charging.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Resources\Styles\ButtonDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Resources\Styles\FlatStyles\FlatRadialGuageStyle.xaml">
