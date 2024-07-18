@@ -3,7 +3,9 @@
 	x:Class="DroidBridgeReborn.App"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:local="using:DroidBridgeReborn">
+	xmlns:local="using:DroidBridgeReborn"
+	xmlns:services="using:DroidBridgeReborn.Services"
+	xmlns:converters="using:DroidBridgeReborn.Converters">
 	<Application.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
@@ -15,12 +17,13 @@
 				<ResourceDictionary Source="/Resources/Styles/FlatStyles/FlatRadialGuageStyle.xaml" />
 				<ResourceDictionary Source="/Resources/Styles/TextStylesDictionary.xaml" />
 				<ResourceDictionary Source="/Resources/Styles/GenericStyles.xaml" />
-				<ResourceDictionary Source="/Resources/Styles/ButtonDictionary.xaml"></ResourceDictionary>
+				<ResourceDictionary Source="/Resources/Styles/ButtonDictionary.xaml" />
 
 				<ResourceDictionary Source="/Resources/Styles/FlatStyles/FlatStylesDictionary.xaml" />
 
 			</ResourceDictionary.MergedDictionaries>
-			<!--  Other app resources here  -->
+			<services:ViewModelLocator x:Key="ViewModelLocator"/>
+			<converters:NavBarItemToBoolConverter x:Key="NavBarItemToBoolConverter"/>
 		</ResourceDictionary>
 	</Application.Resources>
 </Application>

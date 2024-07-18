@@ -14,6 +14,7 @@
 	<SvgImageSource x:Key="RemoteConnectIcon" UriSource="/Assets/Icons/connect.svg" />
 	<SvgImageSource x:Key="SettignsCogIcon" UriSource="/Assets/Icons/settings_cog_ic.svg" />
 	<SvgImageSource x:Key="AndroidIcon" UriSource="/Assets/Icons/android.svg" />
+	<SvgImageSource x:Key="AndroidDarkIcon" UriSource="/Assets/Icons/androidEnabled.svg" />
 	<SvgImageSource x:Key="UploadIcon" UriSource="/Assets/Icons/upload.svg" />
 	<SvgImageSource x:Key="AddDeviceIcon" UriSource="/Assets/Icons/add-device.svg" />
 </ResourceDictionary>

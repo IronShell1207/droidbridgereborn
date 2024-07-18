@@ -18,6 +18,7 @@
     <None Remove="Assets\Icons\add-device.svg" />
     <None Remove="Assets\Icons\android-icon.png" />
     <None Remove="Assets\Icons\android.svg" />
+    <None Remove="Assets\Icons\androidEnabled.svg" />
     <None Remove="Assets\Icons\connect.svg" />
     <None Remove="Assets\Icons\settings_cog_ic.svg" />
     <None Remove="Assets\Icons\upload.svg" />
@@ -39,11 +40,14 @@
     <None Remove="Resources\Styles\GenericStyles.xaml" />
     <None Remove="Resources\Styles\TextStylesDictionary.xaml" />
     <None Remove="Resources\VectorsDictionary.xaml" />
+    <None Remove="Views\Controls\NavBarItemButton.xaml" />
     <None Remove="Views\Controls\PanelControls\ApplicationManagerButton.xaml" />
     <None Remove="Views\Controls\PanelControls\BatteryPresenterPanel.xaml" />
     <None Remove="Views\Controls\PanelControls\FileExchangeButton.xaml" />
     <None Remove="Views\Controls\PanelControls\RemoteControlButton.xaml" />
+    <None Remove="Views\Pages\AdbSetupPage.xaml" />
     <None Remove="Views\Pages\DevicePage.xaml" />
+    <None Remove="Views\Pages\SettingsPage.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -126,6 +130,9 @@
     <Content Update="Assets\Icons\add-device.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Update="Assets\Icons\androidEnabled.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Update="Assets\Icons\android-icon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -168,6 +175,16 @@
     <Content Update="Assets\Images\wireless-charging.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\Pages\SettingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\Controls\NavBarItemButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Resources\Styles\ButtonDictionary.xaml">
@@ -230,7 +247,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Services\" />
+    <Page Update="Views\Pages\AdbSetupPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
   <!-- 

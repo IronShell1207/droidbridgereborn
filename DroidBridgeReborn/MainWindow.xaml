@@ -3,6 +3,7 @@
 	x:Class="DroidBridgeReborn.MainWindow"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:controls="using:DroidBridgeReborn.Views.Controls"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:local="using:DroidBridgeReborn"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -63,100 +64,94 @@
 						Grid.Row="1"
 						Margin="5,20"
 						Spacing="10">
-						<Button Height="40" Style="{StaticResource FlatButtonAlignedStyle}">
-							<Grid
-								Padding="10,0,0,0"
-								CornerRadius="10"
-								Grid.ColumnSpacing="20">
-								<Grid.ColumnDefinitions>
-									<ColumnDefinition Width="34" />
-									<ColumnDefinition Width="*" />
-								</Grid.ColumnDefinitions>
-								<Viewbox Height="25" Margin="-1 0 0 0">
+
+						<controls:NavBarItemButton
+							Command="{Binding Source={StaticResource ViewModelLocator}, Path=GetNavigationHubViewModel.ChangeSelectedTabCommand}"
+							CommandParameter="AdbPage"
+							IsEnabledState="{Binding Source={StaticResource ViewModelLocator}, Path=GetNavigationHubViewModel.SelectedPageType, ConverterParameter=AdbPage, Converter={StaticResource NavBarItemToBoolConverter}}"
+							Text="Adb setup">
+							<controls:NavBarItemButton.EnabledIcon>
+								<Viewbox Height="25" Margin="-1,0,0,0">
+									<Image Source="{StaticResource AndroidDarkIcon}" />
+								</Viewbox>
+							</controls:NavBarItemButton.EnabledIcon>
+							<controls:NavBarItemButton.DisabledIcon>
+								<Viewbox Height="25" Margin="-1,0,0,0">
 									<Image Source="{StaticResource AndroidIcon}" />
 								</Viewbox>
-								<TextBlock
-									Grid.Column="1"
-									VerticalAlignment="Center"
-									FontFamily="{StaticResource Raleway}"
-									FontSize="16"
-									Text="Adb setup" />
-							</Grid>
-						</Button>
-						<Button Height="40" Style="{StaticResource FlatButtonAlignedStyle}">
-							<Grid
-								Padding="10,0,0,0"
-								Background="White"
-								CornerRadius="10"
-								Grid.ColumnSpacing="20">
-								<Grid.ColumnDefinitions>
-									<ColumnDefinition Width="34" />
-									<ColumnDefinition Width="*" />
-								</Grid.ColumnDefinitions>
+							</controls:NavBarItemButton.DisabledIcon>
+						</controls:NavBarItemButton>
+						<controls:NavBarItemButton
+							Command="{Binding Source={StaticResource ViewModelLocator}, Path=GetNavigationHubViewModel.ChangeSelectedTabCommand}"
+							CommandParameter="DevicePage"
+							IsEnabledState="{Binding Source={StaticResource ViewModelLocator}, Path=GetNavigationHubViewModel.SelectedPageType, ConverterParameter=DevicePage, Converter={StaticResource NavBarItemToBoolConverter}}"
+							Text="Device">
+							<controls:NavBarItemButton.EnabledIcon>
 								<Viewbox Height="25">
 									<Path Data="{StaticResource DeviceIconVector}" Fill="Black" />
 								</Viewbox>
-								<TextBlock
-									Grid.Column="1"
-									VerticalAlignment="Center"
-									FontFamily="{StaticResource Raleway}"
-									FontSize="16"
-									FontWeight="Bold"
-									Foreground="Black"
-									Text="Device" />
-							</Grid>
-						</Button>
-
-						<Button Height="40" Style="{StaticResource FlatButtonAlignedStyle}">
-							<Grid Padding="10,0,0,0" Grid.ColumnSpacing="20">
-								<Grid.ColumnDefinitions>
-									<ColumnDefinition Width="34" />
-									<ColumnDefinition Width="*" />
-								</Grid.ColumnDefinitions>
-								<Viewbox Width="25" Height="25">
+							</controls:NavBarItemButton.EnabledIcon>
+							<controls:NavBarItemButton.DisabledIcon>
+								<Viewbox Height="25">
+									<Path Data="{StaticResource DeviceIconVector}" Fill="#a9dfd8" />
+								</Viewbox>
+							</controls:NavBarItemButton.DisabledIcon>
+						</controls:NavBarItemButton>
+						<controls:NavBarItemButton
+							Command="{Binding Source={StaticResource ViewModelLocator}, Path=GetNavigationHubViewModel.ChangeSelectedTabCommand}"
+							CommandParameter="FDroidPage"
+							IsEnabledState="{Binding Source={StaticResource ViewModelLocator}, Path=GetNavigationHubViewModel.SelectedPageType, ConverterParameter=FDroidPage, Converter={StaticResource NavBarItemToBoolConverter}}"
+							Text="F-Droid Store">
+							<controls:NavBarItemButton.EnabledIcon>
+								<Viewbox Height="25">
 									<Path
 										Data="{StaticResource _folderIconVector}"
-										Stroke="White"
+										Stroke="Black"
 										StrokeEndLineCap="Round"
 										StrokeStartLineCap="Round"
 										StrokeThickness="66" />
 								</Viewbox>
-								<TextBlock
-									Grid.Column="1"
-									VerticalAlignment="Center"
-									FontFamily="{StaticResource Raleway}"
-									FontSize="16"
-									Text="F-Droid Store" />
-							</Grid>
-						</Button>
+							</controls:NavBarItemButton.EnabledIcon>
+							<controls:NavBarItemButton.DisabledIcon>
+								<Viewbox Height="25">
+									<Path
+										Data="{StaticResource _folderIconVector}"
+										Stroke="#a9dfd8"
+										StrokeEndLineCap="Round"
+										StrokeStartLineCap="Round"
+										StrokeThickness="66" />
+								</Viewbox>
+							</controls:NavBarItemButton.DisabledIcon>
+						</controls:NavBarItemButton>
 					</StackPanel>
 
-					<Button
+					<controls:NavBarItemButton
 						Grid.Row="3"
-						Height="40"
-						Margin="15,0"
-						Style="{StaticResource FlatButtonAlignedStyle}">
-						<Grid Grid.ColumnSpacing="20">
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="34" />
-								<ColumnDefinition Width="*" />
-							</Grid.ColumnDefinitions>
+						Command="{Binding Source={StaticResource ViewModelLocator}, Path=GetNavigationHubViewModel.ChangeSelectedTabCommand}"
+						CommandParameter="SettingsPage"
+						IsEnabledState="{Binding Source={StaticResource ViewModelLocator}, Path=GetNavigationHubViewModel.SelectedPageType, ConverterParameter=SettingsPage, Converter={StaticResource NavBarItemToBoolConverter}}"
+						Text="Settings">
+						<controls:NavBarItemButton.EnabledIcon>
 							<Viewbox Width="25" Height="25">
 								<Path
 									Data="{StaticResource _settingsIconVector}"
-									Stroke="White"
+									Stroke="Black"
 									StrokeEndLineCap="Round"
 									StrokeStartLineCap="Round"
 									StrokeThickness="66" />
 							</Viewbox>
-							<TextBlock
-								Grid.Column="1"
-								VerticalAlignment="Center"
-								FontFamily="{StaticResource Raleway}"
-								FontSize="16"
-								Text="Settings" />
-						</Grid>
-					</Button>
+						</controls:NavBarItemButton.EnabledIcon>
+						<controls:NavBarItemButton.DisabledIcon>
+							<Viewbox Width="25" Height="25">
+								<Path
+									Data="{StaticResource _settingsIconVector}"
+									Stroke="#a9dfd8"
+									StrokeEndLineCap="Round"
+									StrokeStartLineCap="Round"
+									StrokeThickness="66" />
+							</Viewbox>
+						</controls:NavBarItemButton.DisabledIcon>
+					</controls:NavBarItemButton>
 
 				</Grid>
 				<Grid Grid.Column="1" Margin="0,50,0,0">
