@@ -16,7 +16,7 @@ namespace DroidBridgeReborn.ViewModels
 		/// </summary>
 		private static readonly Lazy<NavigationHubViewModel> _instance = new((() => new NavigationHubViewModel()));
 
-		private NavBarItem _currentPageName = NavBarItem.AdbPage;
+		private NavBarItem _currentPageName = NavBarItem.None;
 
 		private Dictionary<NavBarItem, Type> _navBarItems = new Dictionary<NavBarItem, Type>();
 
@@ -54,7 +54,7 @@ namespace DroidBridgeReborn.ViewModels
 		/// <summary>
 		/// Переключает вкладку
 		/// </summary>
-		private void OnChangeSelectedTab(object parameter)
+		public void OnChangeSelectedTab(object parameter)
 		{
 			if (parameter is string pageName && NavBarItem.TryParse(pageName, out NavBarItem selectedItem))
 			{

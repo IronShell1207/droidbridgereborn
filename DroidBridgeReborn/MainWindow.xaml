@@ -66,6 +66,7 @@
 						Spacing="10">
 
 						<controls:NavBarItemButton
+							x:Uid="AdbPageSetupUid"
 							Command="{Binding Source={StaticResource ViewModelLocator}, Path=GetNavigationHubViewModel.ChangeSelectedTabCommand}"
 							CommandParameter="AdbPage"
 							IsEnabledState="{Binding Source={StaticResource ViewModelLocator}, Path=GetNavigationHubViewModel.SelectedPageType, ConverterParameter=AdbPage, Converter={StaticResource NavBarItemToBoolConverter}}"
@@ -82,6 +83,7 @@
 							</controls:NavBarItemButton.DisabledIcon>
 						</controls:NavBarItemButton>
 						<controls:NavBarItemButton
+							x:Uid="DeviceCenterUid"
 							Command="{Binding Source={StaticResource ViewModelLocator}, Path=GetNavigationHubViewModel.ChangeSelectedTabCommand}"
 							CommandParameter="DevicePage"
 							IsEnabledState="{Binding Source={StaticResource ViewModelLocator}, Path=GetNavigationHubViewModel.SelectedPageType, ConverterParameter=DevicePage, Converter={StaticResource NavBarItemToBoolConverter}}"
@@ -98,6 +100,7 @@
 							</controls:NavBarItemButton.DisabledIcon>
 						</controls:NavBarItemButton>
 						<controls:NavBarItemButton
+							x:Uid="FDroidStoreUid"
 							Command="{Binding Source={StaticResource ViewModelLocator}, Path=GetNavigationHubViewModel.ChangeSelectedTabCommand}"
 							CommandParameter="FDroidPage"
 							IsEnabledState="{Binding Source={StaticResource ViewModelLocator}, Path=GetNavigationHubViewModel.SelectedPageType, ConverterParameter=FDroidPage, Converter={StaticResource NavBarItemToBoolConverter}}"
@@ -126,6 +129,7 @@
 					</StackPanel>
 
 					<controls:NavBarItemButton
+						x:Uid="SettingsUid"
 						Grid.Row="3"
 						Command="{Binding Source={StaticResource ViewModelLocator}, Path=GetNavigationHubViewModel.ChangeSelectedTabCommand}"
 						CommandParameter="SettingsPage"

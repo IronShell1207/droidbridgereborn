@@ -85,6 +85,7 @@ namespace DroidBridgeReborn
 		{
 			var services = new ServiceCollection();
 			services.AddSingleton<IADBServiceMonitor, ADBServiceMonitor>();
+			services.AddSingleton<AndroidBridgeCommandExecutor>();
 			ServiceProvider = services.BuildServiceProvider();
 			
 			Log.Logger.Information("Services initialized");

@@ -27,7 +27,7 @@
 				VerticalAlignment="Center"
 				FontFamily="{StaticResource Raleway}"
 				FontSize="16"
-				Foreground="White"
+				Foreground="{StaticResource DefaultTextsForeBrush}"
 				Text="{x:Bind Text, Mode=OneWay}" />
 		</Grid>
 	</controls:TwoStateButton.DisabledStateContent>

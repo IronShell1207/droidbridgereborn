@@ -3,9 +3,9 @@
 	x:Class="DroidBridgeReborn.App"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:converters="using:DroidBridgeReborn.Converters"
 	xmlns:local="using:DroidBridgeReborn"
-	xmlns:services="using:DroidBridgeReborn.Services"
-	xmlns:converters="using:DroidBridgeReborn.Converters">
+	xmlns:services="using:DroidBridgeReborn.Services">
 	<Application.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
@@ -22,8 +22,10 @@
 				<ResourceDictionary Source="/Resources/Styles/FlatStyles/FlatStylesDictionary.xaml" />
 
 			</ResourceDictionary.MergedDictionaries>
-			<services:ViewModelLocator x:Key="ViewModelLocator"/>
-			<converters:NavBarItemToBoolConverter x:Key="NavBarItemToBoolConverter"/>
+			<services:ViewModelLocator x:Key="ViewModelLocator" />
+
+			<converters:AdbStatusToStringConverter x:Key="AdbStatusToStringConverter" />
+			<converters:NavBarItemToBoolConverter x:Key="NavBarItemToBoolConverter" />
 		</ResourceDictionary>
 	</Application.Resources>
 </Application>

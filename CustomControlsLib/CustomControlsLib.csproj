@@ -10,6 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Controls\DialogBaseControl.xaml" />
+    <None Remove="Controls\SvgIcon.xaml" />
     <None Remove="Wins\BorderlessWindow.xaml" />
   </ItemGroup>
 
@@ -25,6 +26,12 @@
   <ItemGroup>
     <ProjectReference Include="..\SystemHelpers\SystemHelpers.csproj" />
     <ProjectReference Include="..\Utils\Utils.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Controls\SvgIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
   <ItemGroup>

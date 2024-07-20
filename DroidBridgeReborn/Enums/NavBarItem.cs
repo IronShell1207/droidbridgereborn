@@ -3,6 +3,7 @@
 	
 	public enum NavBarItem
 	{
+		None = 0,
 		AdbPage,
 		DevicePage,
 		FDroidPage,

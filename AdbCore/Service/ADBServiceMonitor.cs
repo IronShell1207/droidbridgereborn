@@ -22,6 +22,7 @@
 			_isTimerRunning = true;
 		}
 
+
 		public event Action<string> OnADBPathChanged;
 
 		public event Action<bool> OnADBStatusChanged;

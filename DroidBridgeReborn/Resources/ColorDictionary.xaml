@@ -8,4 +8,8 @@
 	<SolidColorBrush x:Key="MainBackgroundShadowColor" Color="#44000000" />
 	<SolidColorBrush x:Key="DeviceInfoPanelBackground" Color="#8a353f4f"/>
 	<SolidColorBrush x:Key="LighterDeviceInfoPanelBackground" Color="#da353f4f"/>
+
+	<SolidColorBrush x:Key="DefaultTextsForeBrush" Color="White"></SolidColorBrush>
+	<SolidColorBrush x:Key="SplittersColor" Color="#44ffffff"></SolidColorBrush>
+
 </ResourceDictionary>

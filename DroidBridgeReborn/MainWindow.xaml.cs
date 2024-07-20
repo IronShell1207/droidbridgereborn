@@ -1,4 +1,6 @@
+using CustomControlsLib.Enums;
 using CustomControlsLib.Helpers;
+using DroidBridgeReborn.ViewModels;
 
 namespace DroidBridgeReborn
 {
@@ -26,7 +28,7 @@ namespace DroidBridgeReborn
 			NavigationHelper.SetupNavigationFrame(_mainFrame);
 			CustomDialogsHelper.SetDialogContainer(_dialogsPresenter);
 			
-			NavigationHelper.NavigateTo(typeof(DevicePage));
+			NavigationHubViewModel.Instance.OnChangeSelectedTab(NavBarItem.AdbPage.ToString());
 		}
 	}
 }
