@@ -4,7 +4,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:local="using:DroidBridgeReborn.Resources">
 
-	<BitmapImage x:Key="_mainBgImage" UriSource="/Assets/Images/shadowy-jungle-rhythms-stocktune.jpg" />
+	<BitmapImage x:Key="_mainBgImage" UriSource="/Assets/Images/test-blurry.png" />
 
 	<BitmapImage x:Key="_icon" UriSource="/Assets/Icons/android-icon.png" />
 

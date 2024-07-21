@@ -5,6 +5,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:converters="using:DroidBridgeReborn.Converters"
 	xmlns:local="using:DroidBridgeReborn"
+	xmlns:msconvert="using:CommunityToolkit.WinUI.UI.Converters"
 	xmlns:services="using:DroidBridgeReborn.Services">
 	<Application.Resources>
 		<ResourceDictionary>
@@ -26,6 +27,16 @@
 
 			<converters:AdbStatusToStringConverter x:Key="AdbStatusToStringConverter" />
 			<converters:NavBarItemToBoolConverter x:Key="NavBarItemToBoolConverter" />
+			<converters:AdbDeviceStateToStringConverter x:Key="AdbDeviceStateToStringConverter" />
+			<msconvert:FormatStringConverter x:Key="FormatStringConverter" />
+			<msconvert:StringFormatConverter x:Key="StringFormatConverter"/>
+			<converters:AdbDeviceStateToBoolConverter x:Key="AdbDeviceStateToBoolConverter" />
+			<converters:AdbDeviceStateToBoolConverter x:Key="AdbDeviceStateToVisibilityConverter" IsToVisibility="True" />
+			<converters:AdbDeviceStateToBoolConverter
+				x:Key="InvertedAdbDeviceStateToVisibilityConverter"
+				IsInverted="True"
+				IsToVisibility="True" />
+			<converters:AdbDeviceStateToBoolConverter x:Key="InvertedAdbDeviceStateToBoolConverter" IsInverted="True" />
 		</ResourceDictionary>
 	</Application.Resources>
 </Application>

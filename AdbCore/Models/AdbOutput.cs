@@ -8,13 +8,15 @@
 
 	public class AdbOutput
 	{
-		public List<string> Lines { get; set; } = new List<string>();
+		public string Lines { get; set; } = string.Empty;
+
+		public string ErrorOutput { get; set; }
 
 		public bool IsError { get; set; } = false;
 		/// <summary>
 		/// Инициализирует экземпляр <see cref="AdbOutput"/>.
 		/// </summary>
-		public AdbOutput(List<string> lines, bool isError = false)
+		public AdbOutput(string lines, bool isError = false)
 		{
 			Lines = lines;
 			IsError = isError;

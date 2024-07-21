@@ -7,8 +7,10 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:local="using:DroidBridgeReborn.Views.Controls.PanelControls"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:viewModels="using:DroidBridgeReborn.ViewModels"
 	Height="270"
 	Padding="0"
+	d:DataContext="{d:DesignInstance viewModels:DevicePageViewModel}"
 	Style="{StaticResource DeviceTileButtonAlignedStyle}"
 	mc:Ignorable="d">
 
@@ -20,7 +22,7 @@
 			VerticalAlignment="Top"
 			Opacity="0.15"
 			Source="{StaticResource _chargingImage}"
-			Visibility="{x:Bind IsCharging, Mode=OneWay}" />
+			Visibility="{Binding SelectedDevice.BatteryInfo.IsACPowered}" />
 		<Image
 			Height="100"
 			Margin="20,35,20,20"
@@ -53,7 +55,7 @@
 				Style="{StaticResource _CUSTOMRadialGuage}"
 				TickBrush="Transparent"
 				TrailBrush="#a9dfd8"
-				Value="15" />
+				Value="{Binding SelectedDevice.BatteryInfo.BatteryLevel}" />
 
 			<TextBlock
 				Grid.Row="2"
@@ -62,24 +64,27 @@
 				VerticalAlignment="Center"
 				FontFamily="{StaticResource Nunito}"
 				FontSize="30"
-				FontWeight="Medium"
-				Text="80%" />
+				FontWeight="Medium">
+				<Run Text="{Binding SelectedDevice.BatteryInfo.BatteryLevel}" /><Run Text="%" />
+			</TextBlock>
 			<StackPanel Margin="25,25,0,0" Spacing="5">
 				<TextBlock
 					VerticalAlignment="Center"
 					Style="{StaticResource TileHeaderTextStyle}"
-					Text="Battery &gt;adb shell dumpsys battery" />
+					Text="Battery" />
 				<TextBlock Margin="0,5,0,0" Style="{StaticResource TileTextsStyle}">
 					<Run Text="Temperature:" />
-					<Run Text="33C" />
+					<Run Text="{Binding SelectedDevice.BatteryInfo.Temperature}" />
+					<Run Text="ºC" />
 				</TextBlock>
-				<TextBlock Style="{StaticResource TileTextsStyle}">
+				<TextBlock Style="{StaticResource TileTextsStyle}" Visibility="{Binding SelectedDevice.BatteryInfo.IsCharging}">
 					<Run Text="Charging rate:" />
-					<Run Text="15w" />
+					<Run Text="{Binding SelectedDevice.BatteryInfo.ChargingWatts}" /><Run Text="w" />
 				</TextBlock>
-				<TextBlock Style="{StaticResource TileTextsStyle}">
+				<TextBlock Style="{StaticResource TileTextsStyle}" Visibility="{Binding SelectedDevice.BatteryInfo.IsCharging}">
 					<Run Text="Charging voltage:" />
-					<Run Text="5V 3A" />
+					<Run Text="{Binding SelectedDevice.BatteryInfo.VoltageCharging}" /><Run Text="V" />
+					<Run Text="{Binding SelectedDevice.BatteryInfo.AmpsChargingRate}" /><Run Text="A" />
 				</TextBlock>
 			</StackPanel>
 		</Grid>

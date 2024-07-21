@@ -44,7 +44,7 @@
 						MaxWidth="170"
 						HorizontalAlignment="Left"
 						Style="{StaticResource TileTextsStyle}"
-						Text="- data manage"
+						Text="- manage apps data "
 						TextWrapping="Wrap" />
 				</StackPanel>
 			</StackPanel>

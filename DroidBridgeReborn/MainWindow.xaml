@@ -9,17 +9,20 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:models="using:Utils.Models"
 	xmlns:winUiEx="using:WinUIEx"
+	MinWidth="880"
+	MinHeight="434"
 	mc:Ignorable="d">
 	<Window.SystemBackdrop>
-		<models:BlurredBackdrop />
+		<winUiEx:TransparentTintBackdrop />
 	</Window.SystemBackdrop>
 
-	<Grid>
+	<Grid SizeChanged="FrameworkElement_OnSizeChanged">
 		<Image
 			HorizontalAlignment="Left"
 			VerticalAlignment="Center"
 			Source="{StaticResource _mainBgImage}"
 			Stretch="UniformToFill" />
+
 		<Grid Background="{ThemeResource MainBackgroundShadowColor}" Loaded="FrameworkElement_OnLoaded">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="*" />
@@ -164,5 +167,14 @@
 			</Grid>
 			<ContentPresenter x:Name="_dialogsPresenter" />
 		</Grid>
+		<TextBlock
+			x:Name="_windowSizeTb"
+			Margin="10,4,0,0"
+			HorizontalAlignment="Left"
+			VerticalAlignment="Top"
+			FontFamily="{StaticResource Raleway}"
+			FontSize="16"
+			IsHitTestVisible="False"
+			Text="1" />
 	</Grid>
 </winUiEx:WindowEx>

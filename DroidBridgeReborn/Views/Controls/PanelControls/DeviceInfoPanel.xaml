@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<UserControl
+	x:Class="DroidBridgeReborn.Views.Controls.PanelControls.DeviceInfoPanel"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="using:DroidBridgeReborn.Views.Controls.PanelControls"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=GetDevicePageViewModel}"
+	mc:Ignorable="d">
+
+
+	<Grid
+		Width="570"
+		Height="300"
+		Margin="15,0,10,0"
+		Padding="25,20,25,0"
+		VerticalAlignment="Top"
+		Background="{ThemeResource DeviceInfoPanelBackground}"
+		CornerRadius="20"
+		Grid.RowSpacing="15">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="Auto" />
+		</Grid.ColumnDefinitions>
+
+		<StackPanel Spacing="5">
+			<TextBlock
+				Margin="0,0,0,10"
+				Style="{StaticResource TileHeaderTextStyle}"
+				Text="Device information" />
+			<TextBlock FontSize="16" Style="{StaticResource TileTextsStyle}">
+				<Run Text="Device model: " />
+				<Run FontWeight="SemiBold" Text="{Binding SelectedDevice.DeviceRealName}" />
+				<Run FontSize="10" Text="(" /><Run FontSize="10" Text="{Binding SelectedDevice.DeviceModelName}" /><Run FontSize="10" Text=")" />
+			</TextBlock>
+			<TextBlock FontSize="16" Style="{StaticResource TileTextsStyle}">
+				<Run Text="Connection state: " />
+				<Run FontWeight="SemiBold" Text="{Binding SelectedDevice.DeviceState, Converter={StaticResource AdbDeviceStateToStringConverter}}" />
+			</TextBlock>
+			<TextBlock FontSize="16" Style="{StaticResource TileTextsStyle}">
+				<Run Text="Cpu:" />
+				<Run FontWeight="SemiBold" Text="{Binding SelectedDevice.ChipName}" />
+			</TextBlock>
+			<TextBlock FontSize="16" Style="{StaticResource TileTextsStyle}">
+				<Run Text="Android version:" />
+				<Run FontWeight="SemiBold" Text="{Binding SelectedDevice.AndroidVersion}" />
+			</TextBlock>
+		</StackPanel>
+
+		<Viewbox
+			Grid.RowSpan="2"
+			Grid.Column="1"
+			Width="120">
+			<Grid Height="500">
+				<Image Source="ms-appx:///Assets/Images/DeviceStates/connected.png" />
+				<StackPanel
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					Spacing="10"
+					Visibility="{Binding SelectedDevice.DeviceState, Converter={StaticResource AdbDeviceStateToVisibilityConverter}, ConverterParameter=Disconnected}">
+					<Image Height="80" Source="ms-appx:///Assets/Images/DeviceStates/not_connected_icon.png" />
+					<TextBlock
+						HorizontalAlignment="Center"
+						FontFamily="{StaticResource Raleway}"
+						FontSize="20"
+						FontWeight="Medium"
+						Text="Disconnected" />
+				</StackPanel>
+
+			</Grid>
+		</Viewbox>
+	</Grid>
+
+</UserControl>

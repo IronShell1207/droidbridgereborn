@@ -30,6 +30,7 @@
     <None Remove="Assets\Images\DeviceStates\not_connected.png" />
     <None Remove="Assets\Images\DeviceStates\not_connected_icon.png" />
     <None Remove="Assets\Images\shadowy-jungle-rhythms-stocktune.jpg" />
+    <None Remove="Assets\Images\test-blurry.png" />
     <None Remove="Assets\Images\wireless-charging-270.png" />
     <None Remove="Assets\Images\wireless-charging.png" />
     <None Remove="Resources\ColorDictionary.xaml" />
@@ -45,6 +46,7 @@
     <None Remove="Views\Controls\NavBarItemButton.xaml" />
     <None Remove="Views\Controls\PanelControls\ApplicationManagerButton.xaml" />
     <None Remove="Views\Controls\PanelControls\BatteryPresenterPanel.xaml" />
+    <None Remove="Views\Controls\PanelControls\DeviceInfoPanel.xaml" />
     <None Remove="Views\Controls\PanelControls\FileExchangeButton.xaml" />
     <None Remove="Views\Controls\PanelControls\RemoteControlButton.xaml" />
     <None Remove="Views\Pages\AdbSetupPage.xaml" />
@@ -174,12 +176,20 @@
     <Content Update="Assets\Images\shadowy-jungle-rhythms-stocktune.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Update="Assets\Images\test-blurry.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Update="Assets\Images\wireless-charging-270.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="Assets\Images\wireless-charging.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\Controls\PanelControls\DeviceInfoPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Views\Pages\SettingsPage.xaml">

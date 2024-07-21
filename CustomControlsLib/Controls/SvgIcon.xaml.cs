@@ -113,7 +113,6 @@ namespace CustomControlsLib.Controls
 				{
 					var svgImageSource = new SvgImageSource();
 					await svgImageSource.SetSourceAsync(stream.AsRandomAccessStream());
-
 					// Assign the SvgImageSource to an Image control
 					_image.Source = svgImageSource;
 				}

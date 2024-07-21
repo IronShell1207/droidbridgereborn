@@ -1,6 +1,8 @@
+using System;
 using CustomControlsLib.Enums;
 using CustomControlsLib.Helpers;
 using DroidBridgeReborn.ViewModels;
+using Microsoft.UI.Xaml.Controls;
 
 namespace DroidBridgeReborn
 {
@@ -29,6 +31,14 @@ namespace DroidBridgeReborn
 			CustomDialogsHelper.SetDialogContainer(_dialogsPresenter);
 			
 			NavigationHubViewModel.Instance.OnChangeSelectedTab(NavBarItem.AdbPage.ToString());
+		}
+
+		private void FrameworkElement_OnSizeChanged(object sender, SizeChangedEventArgs e)
+		{
+			if (sender is Grid grid)
+			{
+				_windowSizeTb.Text = $"{Math.Round(grid.ActualWidth,2)}x{Math.Round(grid.ActualHeight, 2)}";
+			}
 		}
 	}
 }

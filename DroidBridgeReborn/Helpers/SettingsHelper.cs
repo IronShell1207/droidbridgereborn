@@ -6,6 +6,9 @@ namespace DroidBridgeReborn.Helpers
 
 	internal class SettingsHelper
 	{
+		private static LocalSettingsHelper<double> _adbDevicesListUpdateIntervalSetting =
+			new LocalSettingsHelper<double>("AdbDevicesListUpdateInterval");
+
 		private static LocalSettingsHelper<double> _adbStatusUpdateIntervalSetting =
 			new LocalSettingsHelper<double>("AdbServiceUpdateInterval");
 
@@ -21,6 +24,19 @@ namespace DroidBridgeReborn.Helpers
 				_adbStatusUpdateIntervalSetting.Value = 5.0;
 			}
 			return TimeSpan.FromSeconds(_adbStatusUpdateIntervalSetting.Value);
+		}
+
+		public static TimeSpan GetDevicesListUpdateInterval()
+		{
+			if (_adbDevicesListUpdateIntervalSetting.Exists == false)
+			{
+				_adbDevicesListUpdateIntervalSetting.Value = 5.0;
+			}
+			return TimeSpan.FromSeconds(_adbDevicesListUpdateIntervalSetting.Value);
+		}
+		public static void SetDevicesListUpdateInterval(TimeSpan interval)
+		{
+			_adbDevicesListUpdateIntervalSetting.Value = interval.TotalSeconds;
 		}
 
 		public static void SetAdbUpdateInterval(TimeSpan interval)

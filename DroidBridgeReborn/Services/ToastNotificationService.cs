@@ -19,9 +19,9 @@ namespace DroidBridgeReborn.Services
 		public ToastNotificationService()
 		{
 			DialogTaskCompletionResult = new TaskCompletionSource<bool>();
-			var view = new ToastView();
-			view.DataContext = this;
-			Content = view;
+			//var view = new ToastView();
+			//view.DataContext = this;
+			//Content = view;
 		}
 
 		public FrameworkElement Content { get; set; }

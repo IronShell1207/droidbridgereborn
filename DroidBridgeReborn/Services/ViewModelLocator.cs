@@ -7,5 +7,8 @@ namespace DroidBridgeReborn.Services
 		public NavigationHubViewModel GetNavigationHubViewModel => NavigationHubViewModel.Instance;
 
 		public AdbServiceViewModel GetAdbServiceViewModel => AdbServiceViewModel.Instance;
+
+		public DevicesListViewModel GetDevicesListViewModel => DevicesListViewModel.Instance;
+		public DevicePageViewModel GetDevicePageViewModel => DevicePageViewModel.Instance;
 	}
 }

@@ -1,4 +1,5 @@
 ﻿using AdbCore.Abstraction;
+using DroidBridgeReborn.ViewModels;
 
 namespace DroidBridgeReborn
 {
@@ -58,7 +59,11 @@ namespace DroidBridgeReborn
 
 			var adbService = ServiceProvider.GetRequiredService<IADBServiceMonitor>();
 			adbService.Initialize(SettingsHelper.GetAdbUpdateInterval());
+			var devicesUpdateService = ServiceProvider.GetRequiredService<AdbDevicesListUpdaterService>();
+			devicesUpdateService.Initialize(SettingsHelper.GetDevicesListUpdateInterval());
 			_servicesInitialized = true;
+			_ = DevicePageViewModel.Instance;
+			_ = DevicesListViewModel.Instance;
 		}
 
 		protected override async void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
@@ -86,6 +91,7 @@ namespace DroidBridgeReborn
 			var services = new ServiceCollection();
 			services.AddSingleton<IADBServiceMonitor, ADBServiceMonitor>();
 			services.AddSingleton<AndroidBridgeCommandExecutor>();
+			services.AddSingleton<AdbDevicesListUpdaterService>();
 			ServiceProvider = services.BuildServiceProvider();
 			
 			Log.Logger.Information("Services initialized");
