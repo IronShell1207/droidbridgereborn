@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<UserControl
+	x:Class="DroidBridgeReborn.Views.Controls.PanelControls.ConnectedDevicesListPanel"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="using:DroidBridgeReborn.Views.Controls.PanelControls"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=GetDevicesListViewModel}"
+	mc:Ignorable="d">
+
+	<Grid
+		Width="570"
+		Height="250"
+		Margin="15,10,10,0"
+		Padding="25,20,25,0"
+		VerticalAlignment="Top"
+		Background="{ThemeResource DeviceInfoPanelBackground}"
+		CornerRadius="20"
+		Grid.RowSpacing="15">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<TextBlock
+			Margin="0,0,0,0"
+			Style="{StaticResource TileHeaderTextStyle}"
+			Text="Connected devices" />
+
+		<ListView
+			Grid.Row="1"
+			Margin="-20,0,-20,10"
+			Padding="5"
+			Background="#24121218"
+			BorderThickness="0"
+			CornerRadius="12"
+			FontFamily="{StaticResource Raleway}"
+			ItemContainerStyle="{StaticResource DevicesListGridViewItemStyle}"
+			ItemsSource="{Binding Devices}"
+			SelectedItem="{Binding Source={StaticResource ViewModelLocator}, Path=GetDevicePageViewModel.SelectedDevice, Mode=TwoWay}">
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="120" />
+							<ColumnDefinition Width="150" />
+							<ColumnDefinition Width="140" />
+							<ColumnDefinition Width="120" />
+						</Grid.ColumnDefinitions>
+						<Grid BorderBrush="{StaticResource SplittersColor}" BorderThickness="0,0,1,0">
+							<TextBlock
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								Text="{Binding DeviceModelName}" />
+						</Grid>
+						<Grid
+							Grid.Column="1"
+							BorderBrush="{StaticResource SplittersColor}"
+							BorderThickness="0,0,1,0">
+							<Viewbox
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								StretchDirection="DownOnly">
+								<TextBlock
+									HorizontalAlignment="Center"
+									VerticalAlignment="Center"
+									Text="{Binding DeviceId}" />
+							</Viewbox>
+						</Grid>
+						<Grid
+							Grid.Column="2"
+							BorderBrush="{StaticResource SplittersColor}"
+							BorderThickness="0,0,1,0">
+							<TextBlock
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								Text="{Binding DeviceState, Converter={StaticResource AdbDeviceStateToStringConverter}}" />
+						</Grid>
+						<Grid Grid.Column="3">
+							<TextBlock
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								Text="{Binding DeviceCodeName}" />
+						</Grid>
+					</Grid>
+				</DataTemplate>
+			</ListView.ItemTemplate>
+			<ListView.Header>
+				<Grid
+					Margin="0,0,0,5"
+					Padding="5,10"
+					BorderBrush="{StaticResource SplittersColor}"
+					BorderThickness="0,0,0,1">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="130" />
+						<ColumnDefinition Width="150" />
+						<ColumnDefinition Width="140" />
+						<ColumnDefinition Width="120" />
+					</Grid.ColumnDefinitions>
+					<Grid
+						Margin="0,-5"
+						BorderBrush="{StaticResource SplittersColor}"
+						BorderThickness="0,0,1,0"
+						Opacity="0.8">
+						<TextBlock
+							HorizontalAlignment="Center"
+							VerticalAlignment="Center"
+							Text="Device name" />
+					</Grid>
+					<Grid
+						Grid.Column="1"
+						Margin="0,-5"
+						BorderBrush="{StaticResource SplittersColor}"
+						BorderThickness="0,0,1,0"
+						Opacity="0.8">
+						<TextBlock
+							HorizontalAlignment="Center"
+							VerticalAlignment="Center"
+							Text="Id" />
+					</Grid>
+					<Grid
+						Grid.Column="2"
+						Margin="0,-5"
+						BorderBrush="{StaticResource SplittersColor}"
+						BorderThickness="0,0,1,0"
+						Opacity="0.8">
+						<TextBlock
+							HorizontalAlignment="Center"
+							VerticalAlignment="Center"
+							Text="Connection state" />
+					</Grid>
+					<TextBlock
+						Grid.Column="3"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"
+						Opacity="0.8"
+						Text="Code name" />
+				</Grid>
+			</ListView.Header>
+		</ListView>
+	</Grid>
+</UserControl>

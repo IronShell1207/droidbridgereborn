@@ -19,6 +19,7 @@ namespace DroidBridgeReborn.ViewModels
 		public ObservableCollection<DeviceViewModel> Devices { get; set; } =
 			new ObservableCollection<DeviceViewModel>();
 
+
 		/// <summary>
 		/// Статичный экземпляр класса <see cref="DevicesListViewModel"/>.
 		/// </summary>

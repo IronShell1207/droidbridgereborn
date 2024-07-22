@@ -8,7 +8,7 @@ namespace DroidBridgeReborn.ViewModels.Objects
 	{
 		public BatteryInfoViewModel BatteryInfo { get; set; } = new BatteryInfoViewModel();
 
-		
+		public bool IsMoreInfoAvailable => DeviceState == DeviceStateType.Device;
 		public static DeviceViewModel Empty { get; private set; } = new DeviceViewModel();
 
 		/// <inheritdoc cref="DeviceState"/>
@@ -52,9 +52,14 @@ namespace DroidBridgeReborn.ViewModels.Objects
 		/// <summary>
 		/// Тип подключения.
 		/// </summary>
-		public DeviceStateType DeviceState {
+		public DeviceStateType DeviceState
+		{
 			get => _deviceState;
-			set => SetProperty(ref _deviceState, value);
+			set
+			{
+				SetProperty(ref _deviceState, value);
+				OnPropertyChanged(nameof(IsMoreInfoAvailable));
+			}
 		}
 
 		/// <summary>

@@ -69,6 +69,18 @@
 
 						</Grid>
 						<panelControls:DeviceInfoPanel />
+						<panelControls:ConnectedDevicesListPanel />
+						<ItemsControl Width="580" Margin="0,5,0,-10" Visibility="{Binding SelectedDevice.IsMoreInfoAvailable}">
+							<ItemsControl.ItemsPanel>
+								<ItemsPanelTemplate>
+									<controls:StaggeredPanel HorizontalAlignment="Left" DesiredColumnWidth="290" />
+								</ItemsPanelTemplate>
+							</ItemsControl.ItemsPanel>
+							<panelControls:BatteryPresenterPanel />
+							<Grid Height="270" Style="{StaticResource TileGridStyle}">
+								<TextBlock Text="Device storage info" />
+							</Grid>
+						</ItemsControl>
 						<Grid
 							Width="300"
 							Height="138"
@@ -131,10 +143,7 @@
 
 						<panelControls:ApplicationManagerButton />
 						<panelControls:FileExchangeButton />
-						<Grid Height="270" Style="{StaticResource TileGridStyle}">
-							<TextBlock Text="Device storage info" />
-						</Grid>
-						<panelControls:BatteryPresenterPanel />
+
 						<Grid Style="{StaticResource TileGridStyle}">
 							<TextBlock Text="Task manager adb shell dumpsys cpuinfo in other window" />
 						</Grid>

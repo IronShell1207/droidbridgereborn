@@ -27,7 +27,7 @@ namespace DroidBridgeReborn
 			ConfigureServices();
 			DispatcherQueueHelper.SetCurrentThread();
 #if !DEBUG
-			UnhandledException += App_UnhandledException;
+			//UnhandledException += App_UnhandledException;
 #endif
 		}
 

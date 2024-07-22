@@ -10,6 +10,16 @@
     <PublishProfile>win10-$(Platform).pubxml</PublishProfile>
     <UseWinUI>true</UseWinUI>
     <EnableMsixTooling>true</EnableMsixTooling>
+    <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
+    <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
+    <PackageCertificateKeyFile>DroidBridgeReborn_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxPackageDir>C:\Users\nev\Documents\Builds\</AppxPackageDir>
+    <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
+    <GenerateTestArtifacts>True</GenerateTestArtifacts>
+    <AppxBundle>Never</AppxBundle>
+    <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Assets\Fonts\Champagne-Limousines-Bold.ttf" />
@@ -46,6 +56,7 @@
     <None Remove="Views\Controls\NavBarItemButton.xaml" />
     <None Remove="Views\Controls\PanelControls\ApplicationManagerButton.xaml" />
     <None Remove="Views\Controls\PanelControls\BatteryPresenterPanel.xaml" />
+    <None Remove="Views\Controls\PanelControls\ConnectedDevicesListPanel.xaml" />
     <None Remove="Views\Controls\PanelControls\DeviceInfoPanel.xaml" />
     <None Remove="Views\Controls\PanelControls\FileExchangeButton.xaml" />
     <None Remove="Views\Controls\PanelControls\RemoteControlButton.xaml" />
@@ -185,6 +196,11 @@
     <Content Update="Assets\Images\wireless-charging.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\Controls\PanelControls\ConnectedDevicesListPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Views\Controls\PanelControls\DeviceInfoPanel.xaml">

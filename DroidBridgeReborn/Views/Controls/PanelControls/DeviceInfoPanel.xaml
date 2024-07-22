@@ -42,11 +42,17 @@
 				<Run Text="Connection state: " />
 				<Run FontWeight="SemiBold" Text="{Binding SelectedDevice.DeviceState, Converter={StaticResource AdbDeviceStateToStringConverter}}" />
 			</TextBlock>
-			<TextBlock FontSize="16" Style="{StaticResource TileTextsStyle}">
+			<TextBlock
+				FontSize="16"
+				Style="{StaticResource TileTextsStyle}"
+				Visibility="{Binding SelectedDevice.IsMoreInfoAvailable}">
 				<Run Text="Cpu:" />
 				<Run FontWeight="SemiBold" Text="{Binding SelectedDevice.ChipName}" />
 			</TextBlock>
-			<TextBlock FontSize="16" Style="{StaticResource TileTextsStyle}">
+			<TextBlock
+				FontSize="16"
+				Style="{StaticResource TileTextsStyle}"
+				Visibility="{Binding SelectedDevice.IsMoreInfoAvailable}">
 				<Run Text="Android version:" />
 				<Run FontWeight="SemiBold" Text="{Binding SelectedDevice.AndroidVersion}" />
 			</TextBlock>
@@ -55,7 +61,10 @@
 		<Viewbox
 			Grid.RowSpan="2"
 			Grid.Column="1"
-			Width="120">
+			Width="123"
+			Height="250"
+			Margin="0,5,0,0"
+			VerticalAlignment="Top">
 			<Grid Height="500">
 				<Image Source="ms-appx:///Assets/Images/DeviceStates/connected.png" />
 				<StackPanel
