@@ -81,7 +81,69 @@
 		public TwoStateButton()
 		{
 			this.DefaultStyleKey = typeof(Button);
-			Loaded += TwoStateButton_Loaded;
+			Loaded += TwoStateButton_Loaded; PointerEntered += TwoStateButton_PointerEntered;
+			PointerExited += TwoStateButton_PointerExited;
+			PointerReleased += TwoStateButton_PointerReleased;
+			LostFocus += TwoStateButton_LostFocus;
+			PointerPressed += TwoStateButton_PointerPressed;
+			KeyDown += TwoStateButton_KeyDown;
+			PointerCaptureLost += TwoStateButton_PointerCaptureLost;
+		}
+
+		private void TwoStateButton_KeyDown(object sender, Microsoft.UI.Xaml.Input.KeyRoutedEventArgs e)
+		{
+			if (IsEnabledState)
+			{
+				VisualStateManager.GoToState(this, "SelectedPressed", true);
+			}
+			else
+			{
+				VisualStateManager.GoToState(this, "Pressed", true);
+			}
+		}
+
+		private void TwoStateButton_PointerCaptureLost(object sender, Microsoft.UI.Xaml.Input.PointerRoutedEventArgs e)
+		{
+			UpdateVisualState();
+		}
+
+		private void TwoStateButton_PointerPressed(object sender, Microsoft.UI.Xaml.Input.PointerRoutedEventArgs e)
+		{
+			if (IsEnabledState)
+			{
+				VisualStateManager.GoToState(this, "SelectedPressed", true);
+			}
+			else
+			{
+				VisualStateManager.GoToState(this, "Pressed", true);
+			}
+		}
+
+		private void TwoStateButton_LostFocus(object sender, RoutedEventArgs e)
+		{
+			UpdateVisualState();
+		}
+
+		private void TwoStateButton_PointerReleased(object sender, Microsoft.UI.Xaml.Input.PointerRoutedEventArgs e)
+		{
+			UpdateVisualState();
+		}
+
+		private void TwoStateButton_PointerExited(object sender, Microsoft.UI.Xaml.Input.PointerRoutedEventArgs e)
+		{
+			UpdateVisualState();
+		}
+
+		private void TwoStateButton_PointerEntered(object sender, Microsoft.UI.Xaml.Input.PointerRoutedEventArgs e)
+		{
+			if (IsEnabledState)
+			{
+				VisualStateManager.GoToState(this, "SelectedPointerOver", true);
+			}
+			else
+			{
+				VisualStateManager.GoToState(this, "PointerOver", true);
+			}
 		}
 
 		#endregion Public Constructors
@@ -114,6 +176,19 @@
 			if (d is TwoStateButton sender && sender.EnabledStateContent != null && sender.DisabledStateContent != null)
 			{
 				sender.Content = sender.IsEnabledState ? sender.EnabledStateContent : sender.DisabledStateContent;
+				sender.UpdateVisualState();
+			}
+		}
+
+		private void UpdateVisualState()
+		{
+			if (IsEnabledState)
+			{
+				VisualStateManager.GoToState(this, "Selected", true);
+			}
+			else
+			{
+				VisualStateManager.GoToState(this, "Normal", true);
 			}
 		}
 

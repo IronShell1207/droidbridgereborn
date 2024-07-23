@@ -29,10 +29,21 @@
 		</Grid.ColumnDefinitions>
 
 		<StackPanel Spacing="5">
-			<TextBlock
-				Margin="0,0,0,10"
-				Style="{StaticResource TileHeaderTextStyle}"
-				Text="Device information" />
+			<StackPanel Margin="0,0,0,10" Orientation="Horizontal">
+				<TextBlock Style="{StaticResource TileHeaderTextStyle}" Text="Device information" />
+				<Button
+					Margin="10,0"
+					Command="{Binding Source={StaticResource ViewModelLocator}, Path=GetDevicesListViewModel.OpenDevicesPickerDialogAsyncCommand}"
+					Style="{StaticResource AccentButtonAlignedStyle}">
+					<StackPanel
+						Margin="-5,0"
+						Orientation="Horizontal"
+						Spacing="10">
+						<BitmapIcon Height="20" UriSource="ms-appx:///Assets/Icons/rectangle-list.png" />
+						<TextBlock Text="Change device" />
+					</StackPanel>
+				</Button>
+			</StackPanel>
 			<TextBlock FontSize="16" Style="{StaticResource TileTextsStyle}">
 				<Run Text="Device model: " />
 				<Run FontWeight="SemiBold" Text="{Binding SelectedDevice.DeviceRealName}" />
@@ -71,7 +82,7 @@
 					HorizontalAlignment="Center"
 					VerticalAlignment="Center"
 					Spacing="10"
-					Visibility="{Binding SelectedDevice.DeviceState, Converter={StaticResource AdbDeviceStateToVisibilityConverter}, ConverterParameter=Disconnected}">
+					Visibility="{Binding SelectedDevice.DeviceState, Converter={StaticResource InvertedAdbDeviceStateToVisibilityConverter}, ConverterParameter=Connected}">
 					<Image Height="80" Source="ms-appx:///Assets/Images/DeviceStates/not_connected_icon.png" />
 					<TextBlock
 						HorizontalAlignment="Center"

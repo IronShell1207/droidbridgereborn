@@ -29,9 +29,12 @@
     <None Remove="Assets\Icons\android-icon.png" />
     <None Remove="Assets\Icons\android.svg" />
     <None Remove="Assets\Icons\androidEnabled.svg" />
+    <None Remove="Assets\Icons\bag-shopping-minus.png" />
     <None Remove="Assets\Icons\connect.svg" />
+    <None Remove="Assets\Icons\rectangle-list.png" />
     <None Remove="Assets\Icons\settings_cog_ic.svg" />
     <None Remove="Assets\Icons\ToColorize\android.svg" />
+    <None Remove="Assets\Icons\ToColorize\basket-shopping-simple.svg" />
     <None Remove="Assets\Icons\upload.svg" />
     <None Remove="Assets\Images\291058.png" />
     <None Remove="Assets\Images\charging-270.png" />
@@ -39,6 +42,7 @@
     <None Remove="Assets\Images\DeviceStates\connected.png" />
     <None Remove="Assets\Images\DeviceStates\not_connected.png" />
     <None Remove="Assets\Images\DeviceStates\not_connected_icon.png" />
+    <None Remove="Assets\Images\dialback.png" />
     <None Remove="Assets\Images\shadowy-jungle-rhythms-stocktune.jpg" />
     <None Remove="Assets\Images\test-blurry.png" />
     <None Remove="Assets\Images\wireless-charging-270.png" />
@@ -52,6 +56,8 @@
     <None Remove="Resources\Styles\GenericStyles.xaml" />
     <None Remove="Resources\Styles\TextStylesDictionary.xaml" />
     <None Remove="Resources\VectorsDictionary.xaml" />
+    <None Remove="Views\Controls\Dialogs\BaseDialogView.xaml" />
+    <None Remove="Views\Controls\Dialogs\ConnectedDevicesListDialog.xaml" />
     <None Remove="Views\Controls\Dialogs\ToastView.xaml" />
     <None Remove="Views\Controls\NavBarItemButton.xaml" />
     <None Remove="Views\Controls\PanelControls\ApplicationManagerButton.xaml" />
@@ -154,13 +160,22 @@
     <Content Update="Assets\Icons\android.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Update="Assets\Icons\bag-shopping-minus.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Update="Assets\Icons\connect.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Assets\Icons\rectangle-list.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="Assets\Icons\settings_cog_ic.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="Assets\Icons\ToColorize\android.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Assets\Icons\ToColorize\basket-shopping-simple.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="Assets\Icons\upload.svg">
@@ -184,6 +199,9 @@
     <Content Update="Assets\Images\DeviceStates\not_connected_icon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Update="Assets\Images\dialback.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Update="Assets\Images\shadowy-jungle-rhythms-stocktune.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -196,6 +214,16 @@
     <Content Update="Assets\Images\wireless-charging.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\Controls\Dialogs\BaseDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\Controls\Dialogs\ConnectedDevicesListDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Views\Controls\PanelControls\ConnectedDevicesListPanel.xaml">

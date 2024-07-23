@@ -118,7 +118,9 @@
 		<Setter Property="HorizontalContentAlignment" Value="Stretch" />
 		<Setter Property="VerticalContentAlignment" Value="Center" />
 		<Setter Property="AllowDrop" Value="False" />
-		<Setter Property="Margin" Value="0" />
+		<Setter Property="CornerRadius" Value="10" />
+		<Setter Property="Margin" Value="0,5" />
+		<Setter Property="Background" Value="#11ffffff" />
 		<Setter Property="MinHeight" Value="0" />
 		<Setter Property="MinWidth" Value="0" />
 		<Setter Property="IsHitTestVisible" Value="True" />
@@ -129,7 +131,8 @@
 						x:Name="RootGrid"
 						Background="{TemplateBinding Background}"
 						BorderBrush="{TemplateBinding BorderBrush}"
-						BorderThickness="{TemplateBinding BorderThickness}">
+						BorderThickness="{TemplateBinding BorderThickness}"
+						CornerRadius="{TemplateBinding CornerRadius}">
 						<Grid.ColumnDefinitions>
 							<ColumnDefinition Width="Auto" />
 							<ColumnDefinition Width="*" />
@@ -148,7 +151,6 @@
 							CornerRadius="5"
 							FontFamily="{StaticResource Nunito}"
 							TextWrapping="Wrap" />
-
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
 								<VisualState x:Name="Normal" />
@@ -156,7 +158,7 @@
 									<Storyboard>
 										<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
 											<ObjectAnimationUsingKeyFrames.KeyFrames>
-												<DiscreteObjectKeyFrame KeyTime="0" Value="#44a9dfd8" />
+												<DiscreteObjectKeyFrame KeyTime="0" Value="#79a9dfd8" />
 											</ObjectAnimationUsingKeyFrames.KeyFrames>
 										</ObjectAnimationUsingKeyFrames>
 									</Storyboard>
@@ -170,13 +172,21 @@
 									</VisualState.Setters>
 								</VisualState>
 
-								<VisualState x:Name="PointerOver" />
+								<VisualState x:Name="PointerOver">
+									<Storyboard>
+										<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
+											<ObjectAnimationUsingKeyFrames.KeyFrames>
+												<DiscreteObjectKeyFrame KeyTime="0" Value="#34a9dfd8" />
+											</ObjectAnimationUsingKeyFrames.KeyFrames>
+										</ObjectAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
 
 								<VisualState x:Name="Pressed">
 									<Storyboard>
 										<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
 											<ObjectAnimationUsingKeyFrames.KeyFrames>
-												<DiscreteObjectKeyFrame KeyTime="0" Value="#64a9dfd8" />
+												<DiscreteObjectKeyFrame KeyTime="0" Value="#a4a9dfd8" />
 											</ObjectAnimationUsingKeyFrames.KeyFrames>
 										</ObjectAnimationUsingKeyFrames>
 									</Storyboard>

@@ -40,8 +40,8 @@
 				FontFamily="{StaticResource Raleway}"
 				PlaceholderText="Enter device IP address to connect..."
 				Style="{StaticResource _customFlatTextBoxStyle}" />
-			<Button Grid.Column="2">
-				<TextBlock FontFamily="{StaticResource Raleway}" Text="Connect" />
+			<Button Grid.Column="2" Style="{StaticResource AccentButtonAlignedStyle}">
+				<TextBlock  Text="Connect" />
 			</Button>
 		</Grid>
 

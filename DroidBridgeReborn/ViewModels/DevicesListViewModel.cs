@@ -10,6 +10,9 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using DroidBridgeReborn.ViewModels.Objects;
 using Microsoft.Extensions.DependencyInjection;
 using Windows.Devices.Input;
+using CommunityToolkit.Mvvm.Input;
+using CustomControlsLib.Helpers;
+using DroidBridgeReborn.ViewModels.Dialogs;
 
 namespace DroidBridgeReborn.ViewModels
 {
@@ -36,13 +39,33 @@ namespace DroidBridgeReborn.ViewModels
 		/// </summary>
 		public DevicesListViewModel()
 		{
+			OpenDevicesPickerDialogAsyncCommand = new AsyncRelayCommand(OnOpenDevicesPickerDialogAsync);
+
 			var adbServiceupdater = App.ServiceProvider.GetRequiredService<IADBServiceMonitor>();
 			adbServiceupdater.OnADBStatusChanged += AdbServiceupdater_OnADBStatusChanged;
+
 			var devicesListUpdaterService = App.ServiceProvider.GetRequiredService<AdbDevicesListUpdaterService>();
 			devicesListUpdaterService.DeviceAdded += DevicesListUpdaterService_DeviceAdded;
 			devicesListUpdaterService.DeviceRemoved += DevicesListUpdaterService_DeviceRemoved;
 			devicesListUpdaterService.DeviceUpdated += DevicesListUpdaterService_DeviceAdded;
 		}
+
+
+		/// <summary>
+		/// Команда выполняющая метод <see cref="OnOpenDevicesPickerDialogAsync"/>.
+		/// </summary>
+		public AsyncRelayCommand OpenDevicesPickerDialogAsyncCommand { get; }
+
+
+		/// <summary>
+		/// Открывает диалог девайсов
+		/// </summary>
+		private async Task OnOpenDevicesPickerDialogAsync()
+		{
+			var devicesDialogVm = new DevicesListDialogViewModel();
+			await devicesDialogVm.ShowCustomDialog();
+		}
+ 
 
 		private void DevicesListUpdaterService_DeviceRemoved(IDevice obj)
 		{

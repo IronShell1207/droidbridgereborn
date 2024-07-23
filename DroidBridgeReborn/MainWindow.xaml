@@ -4,6 +4,7 @@
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:controls="using:DroidBridgeReborn.Views.Controls"
+	xmlns:controls1="using:CustomControlsLib.Controls"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:local="using:DroidBridgeReborn"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -93,7 +94,7 @@
 							Text="Device">
 							<controls:NavBarItemButton.EnabledIcon>
 								<Viewbox Height="25">
-									<Path Data="{StaticResource DeviceIconVector}" Fill="Black" />
+									<Path Data="{StaticResource DeviceIconVector}" Fill="#000" />
 								</Viewbox>
 							</controls:NavBarItemButton.EnabledIcon>
 							<controls:NavBarItemButton.DisabledIcon>
@@ -110,22 +111,12 @@
 							Text="F-Droid Store">
 							<controls:NavBarItemButton.EnabledIcon>
 								<Viewbox Height="25">
-									<Path
-										Data="{StaticResource _folderIconVector}"
-										Stroke="Black"
-										StrokeEndLineCap="Round"
-										StrokeStartLineCap="Round"
-										StrokeThickness="66" />
+									<BitmapIcon Foreground="Black" UriSource="ms-appx:///Assets/Icons/bag-shopping-minus.png" />
 								</Viewbox>
 							</controls:NavBarItemButton.EnabledIcon>
 							<controls:NavBarItemButton.DisabledIcon>
 								<Viewbox Height="25">
-									<Path
-										Data="{StaticResource _folderIconVector}"
-										Stroke="#a9dfd8"
-										StrokeEndLineCap="Round"
-										StrokeStartLineCap="Round"
-										StrokeThickness="66" />
+									<BitmapIcon Foreground="#a9dfd8" UriSource="ms-appx:///Assets/Icons/bag-shopping-minus.png" />
 								</Viewbox>
 							</controls:NavBarItemButton.DisabledIcon>
 						</controls:NavBarItemButton>

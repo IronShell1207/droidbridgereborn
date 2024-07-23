@@ -7,6 +7,8 @@
 	<BitmapImage x:Key="_mainBgImage" UriSource="/Assets/Images/test-blurry.png" />
 
 	<BitmapImage x:Key="_icon" UriSource="/Assets/Icons/android-icon.png" />
+	<BitmapImage x:Key="StoreBitmImage" UriSource="/Assets/Icons/bag-shopping-minus.png" />
+	<BitmapImage x:Key="DialogsBackImage" UriSource="/Assets/Images/dialback.png" />
 
 	<BitmapImage x:Key="_chargingImage" UriSource="/Assets/Images/charging-270.png" />
 	<BitmapImage x:Key="_wirelessChargingImage" UriSource="/Assets/Images/wireless-charging-270.png" />
@@ -18,5 +20,6 @@
 	<SvgImageSource x:Key="UploadIcon" UriSource="/Assets/Icons/upload.svg" />
 	<SvgImageSource x:Key="AddDeviceIcon" UriSource="/Assets/Icons/add-device.svg" />
 
-	<SvgImageSource x:Key="CAndroidIcon" UriSource="ms-appx:///Assets/Icons/ToColorize/android.svg"/>
+	<SvgImageSource x:Key="CAndroidIcon" UriSource="ms-appx:///Assets/Icons/ToColorize/android.svg" />
+	<SvgImageSource x:Key="CAndroidStoreIcon" UriSource="ms-appx:///Assets/Icons/ToColorize/basket-shopping-simple.svg" />
 </ResourceDictionary>

@@ -9,7 +9,8 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	Width="200"
 	Height="40"
-	Style="{StaticResource FlatButtonAlignedStyle}"
+	CornerRadius="10"
+	Style="{StaticResource _navItemButtonAlignedStyle}"
 	mc:Ignorable="d">
 
 	<controls:TwoStateButton.DisabledStateContent>
@@ -21,7 +22,7 @@
 				<ColumnDefinition Width="34" />
 				<ColumnDefinition Width="*" />
 			</Grid.ColumnDefinitions>
-			<ContentPresenter Content="{x:Bind DisabledIcon, Mode=OneWay}"  />
+			<ContentPresenter Content="{x:Bind DisabledIcon, Mode=OneWay}" />
 			<TextBlock
 				Grid.Column="1"
 				VerticalAlignment="Center"
@@ -32,16 +33,12 @@
 		</Grid>
 	</controls:TwoStateButton.DisabledStateContent>
 	<controls:TwoStateButton.EnabledStateContent>
-		<Grid
-			Padding="10,0,0,0"
-			Background="White"
-			CornerRadius="10"
-			Grid.ColumnSpacing="20">
+		<Grid Padding="10,0,0,0" Grid.ColumnSpacing="20">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="34" />
 				<ColumnDefinition Width="*" />
 			</Grid.ColumnDefinitions>
-			<ContentPresenter Content="{x:Bind EnabledIcon, Mode=OneWay}"  />
+			<ContentPresenter Content="{x:Bind EnabledIcon, Mode=OneWay}" />
 			<TextBlock
 				Grid.Column="1"
 				VerticalAlignment="Center"

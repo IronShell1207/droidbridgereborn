@@ -132,6 +132,9 @@
 			{
 				try
 				{
+					if (dialogModel.Content is IDialogView dialogView)
+						dialogView.ChangeToWindowStyle();
+					
 					BorderlessWindow window = new BorderlessWindow();
 					TaskCompletionSource<bool> viewLoadCompletionSource = new TaskCompletionSource<bool>();
 					view.SizeChanged += (st, e) => viewLoadCompletionSource.TrySetResult(true);
