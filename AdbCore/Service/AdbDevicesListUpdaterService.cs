@@ -9,6 +9,8 @@ using AdbCore.Enums;
 using AdbCore.Exceptions;
 using AdbCore.Models;
 using AdbCore.Service.Base;
+using Microsoft.AppCenter.Crashes;
+using Serilog;
 
 namespace AdbCore.Service
 {
@@ -17,6 +19,7 @@ namespace AdbCore.Service
 	{
 		private IADBServiceMonitor _adbServiceMonitor;
 		private AndroidBridgeCommandExecutor _commandExecutor;
+		private SemaphoreSlim _semaphore = new SemaphoreSlim(1);
 	
 		private List<IDevice> _connectedDevices = new List<IDevice>();
 
@@ -44,19 +47,34 @@ namespace AdbCore.Service
 			else
 			{
 				StopMonitoring();
+				_connectedDevices.Clear();
 			}
 		}
 
 		protected override async void OnUpdateAction(object state)
 		{
-			if (!_adbServiceMonitor.IsRunning)
-				return;
+			try
+			{
+				await _semaphore.WaitAsync();
+				if (!_adbServiceMonitor.IsRunning || _commandExecutor.CommandRunning)
+					return;
 
-			await UpdateDevicesListAsync();
+				await UpdateDevicesListAsync();
+			}
+			catch (Exception ex)
+			{
+				Log.Logger.Error(ex, ex.Message);
+				Crashes.TrackError(ex);
+			}
+			finally
+			{
+				_semaphore.Release();
+			}
 		}
 
 		private async Task UpdateDevicesListAsync()
 		{
+
 			AdbOutput output = await _commandExecutor.GetCommandResultAsync("devices -l");
 			if (output.IsError)
 			{
@@ -145,9 +163,9 @@ namespace AdbCore.Service
 		{
 			var command = $"-s {deviceId} shell getprop";
 			var output = await _commandExecutor.GetCommandResultAsync(command);
-			if (output.IsError)
+			if (output == null || output.IsError)
 			{
-				ErrorOccurred?.Invoke(new AdbCommandExecutionException(output.ErrorOutput));
+				ErrorOccurred?.Invoke(new AdbCommandExecutionException(output?.ErrorOutput));
 				return null;
 			}
 
@@ -213,7 +231,9 @@ namespace AdbCore.Service
 					case "level":
 					batteryInfo.BatteryLevel = double.Parse(value);
 					break;
-					
+					case "voltage":
+					batteryInfo.VoltageCharging = ParseToDouble(value) / 1000; // Convert mV to V
+					break;
 					case "temperature":
 					batteryInfo.Temperature = ParseToDouble(value) / 10; // Convert tenths of degree Celsius to degree Celsius
 					break;

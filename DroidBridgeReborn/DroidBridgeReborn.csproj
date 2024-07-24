@@ -33,8 +33,13 @@
     <None Remove="Assets\Icons\connect.svg" />
     <None Remove="Assets\Icons\rectangle-list.png" />
     <None Remove="Assets\Icons\settings_cog_ic.svg" />
+    <None Remove="Assets\Icons\ToColorize\android-ver.svg" />
     <None Remove="Assets\Icons\ToColorize\android.svg" />
     <None Remove="Assets\Icons\ToColorize\basket-shopping-simple.svg" />
+    <None Remove="Assets\Icons\ToColorize\cpu-ic.svg" />
+    <None Remove="Assets\Icons\ToColorize\info-circle.svg" />
+    <None Remove="Assets\Icons\ToColorize\status-alert.svg" />
+    <None Remove="Assets\Icons\ToColorize\status-success.svg" />
     <None Remove="Assets\Icons\upload.svg" />
     <None Remove="Assets\Images\291058.png" />
     <None Remove="Assets\Images\charging-270.png" />
@@ -176,6 +181,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="Assets\Icons\ToColorize\basket-shopping-simple.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Assets\Icons\ToColorize\info-circle.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="Assets\Icons\upload.svg">

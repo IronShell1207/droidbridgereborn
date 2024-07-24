@@ -12,5 +12,6 @@
 		void StopMonitoring();
 		void ChangeInterval(TimeSpan interval);
 		void Initialize(TimeSpan interval);
+		void UpdateStatus();
 	}
 }

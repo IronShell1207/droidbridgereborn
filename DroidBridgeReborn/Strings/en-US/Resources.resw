@@ -121,7 +121,7 @@
     <value>Device center</value>
   </data>
   <data name="AdbPageSetupUid.Text" xml:space="preserve">
-    <value>Adb setup</value>
+    <value>Adb server</value>
   </data>
   <data name="FDroidStoreUid.Text" xml:space="preserve">
     <value>F-Droid Store</value>

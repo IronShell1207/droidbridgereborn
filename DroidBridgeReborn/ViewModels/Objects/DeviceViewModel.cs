@@ -95,7 +95,15 @@ namespace DroidBridgeReborn.ViewModels.Objects
 		public string DeviceManufacturer
 		{
 			get => _deviceManufacturer;
-			set => SetProperty(ref _deviceManufacturer, value);
+			set
+			{
+				if (string.IsNullOrWhiteSpace(value) == false)
+				{
+					string newValue = value[0].ToString().ToUpper();
+					value = newValue + value.Substring(1, value.Length - 1);
+				}
+				SetProperty(ref _deviceManufacturer, value);
+			}
 		}
 
 		/// <summary>

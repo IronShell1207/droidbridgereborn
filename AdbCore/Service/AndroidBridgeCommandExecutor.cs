@@ -12,6 +12,7 @@ using AdbCore.Exceptions;
 using AdbCore.Models;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
+using Microsoft.AppCenter.Crashes;
 using Serilog;
 
 namespace AdbCore.Service
@@ -19,13 +20,49 @@ namespace AdbCore.Service
 	public class AndroidBridgeCommandExecutor
 	{
 		private IADBServiceMonitor _adbServiceMonitor;
-
+		public bool CommandRunning { get; private set; }
 		/// <summary>
 		/// Инициализирует экземпляр <see cref="AndroidBridgeCommandExecutor"/>.
 		/// </summary>
 		public AndroidBridgeCommandExecutor(IADBServiceMonitor adbUpdateService)
 		{
 			_adbServiceMonitor = adbUpdateService;
+			 
+		}
+
+		public async Task StartAdbServer()
+		{
+			if (string.IsNullOrWhiteSpace(_adbServiceMonitor.CurrentAdbPath))
+				throw new ArgumentNullException("adb path", "No adb path in service");
+
+			using var process = GetAdbStartupProcess("start-server", true);
+			process.Start();
+			await process.WaitForExitAsync();
+			_adbServiceMonitor.UpdateStatus();
+			Log.Logger.Debug("Server started");
+		}
+
+		public async Task StopServerAndKillAllProcesses()
+		{
+			try
+			{
+				using var process = GetAdbStartupProcess("kill-server");
+				process.Start();
+				await process.WaitForExitAsync();
+
+				var adbProcs = Process.GetProcessesByName("adb");
+				foreach (var adbProc in adbProcs)
+				{
+					adbProc.Kill();
+				}
+				_adbServiceMonitor.UpdateStatus();
+				Log.Logger.Debug("Server stopped");
+			}
+			catch (Exception ex)
+			{
+				Log.Logger.Error(ex, ex.Message);
+				Crashes.TrackError(ex);
+			}
 		}
 
 		public async Task<AdbOutput> GetCommandResultAsync(string commandText, TimeSpan executionTimeout = default, CancellationToken cancellationToken = default)
@@ -33,6 +70,7 @@ namespace AdbCore.Service
 			try
 			{
 				using Process process = GetAdbStartupProcess(commandText);
+				CommandRunning = true;
 				process.Start();
 				string output = await process.StandardOutput.ReadToEndAsync(cancellationToken);
 				string errorOutput = await process.StandardError.ReadToEndAsync(cancellationToken);
@@ -41,7 +79,7 @@ namespace AdbCore.Service
 				Log.Logger.Debug(output);
 				Log.Logger.Debug(errorOutput);
 				//var lines = output.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None).ToList();
-				var adbOutput = new AdbOutput(output, errorOutput.Trim().Length >1);
+				var adbOutput = new AdbOutput(output, errorOutput.Trim().Length > 1);
 				adbOutput.ErrorOutput = errorOutput;
 				return adbOutput;
 			}
@@ -50,14 +88,18 @@ namespace AdbCore.Service
 				Log.Logger.Error(ex, ex.Message);
 				Microsoft.AppCenter.Crashes.Crashes.TrackError(ex);
 			}
+			finally
+			{
+				CommandRunning = false;
+			}
 
 			return null;
 		}
 
-		private Process GetAdbStartupProcess(string commandText)
+		private Process GetAdbStartupProcess(string commandText, bool ignoreStatus = false)
 		{
 			string executablePath = _adbServiceMonitor.CurrentAdbPath;
-			if (string.IsNullOrWhiteSpace(executablePath) || _adbServiceMonitor.IsRunning == false)
+			if (string.IsNullOrWhiteSpace(executablePath) || (_adbServiceMonitor.IsRunning == false && !ignoreStatus))
 				throw new AdbServerNotRunningException();
 
 			var programStartInfo = new ProcessStartInfo(executablePath, commandText)
@@ -77,43 +119,52 @@ namespace AdbCore.Service
 
 		public async IAsyncEnumerable<string> StartCommandExecutionAsync(string commandText, Action<string> outputAction, [EnumeratorCancellation] CancellationToken cancellationToken = default)
 		{
-			using Process process = GetAdbStartupProcess(commandText);
-			var outputlines = new List<string>();
-			var outputChannel = Channel.CreateUnbounded<string>();
-
-			async Task ReadStreamAsync(StreamReader reader)
+			 
+			try
 			{
-				try
+				using Process process = GetAdbStartupProcess(commandText);
+				var outputlines = new List<string>();
+				var outputChannel = Channel.CreateUnbounded<string>();
+
+				async Task ReadStreamAsync(StreamReader reader)
 				{
-					while (!reader.EndOfStream)
+					try
 					{
-						var line = await reader.ReadLineAsync(cancellationToken);
-						if (line != null)
+						while (!reader.EndOfStream)
 						{
-							await outputChannel.Writer.WriteAsync(line, cancellationToken);
+							var line = await reader.ReadLineAsync(cancellationToken);
+							if (line != null)
+							{
+								await outputChannel.Writer.WriteAsync(line, cancellationToken);
+							}
 						}
 					}
+					catch (OperationCanceledException) { }
+					finally
+					{
+						outputChannel.Writer.Complete();
+					}
 				}
-				catch (OperationCanceledException) { }
-				finally
+
+				CommandRunning = true;
+				process.Start();
+
+				var outputTask = ReadStreamAsync(process.StandardOutput);
+				var errorTask = ReadStreamAsync(process.StandardError);
+
+				await foreach (var line in outputChannel.Reader.ReadAllAsync(cancellationToken))
 				{
-					outputChannel.Writer.Complete();
+					yield return line;
 				}
+
+				await Task.WhenAll(outputTask, errorTask);
+
+				await process.WaitForExitAsync(cancellationToken);
 			}
-
-			process.Start();
-
-			var outputTask = ReadStreamAsync(process.StandardOutput);
-			var errorTask = ReadStreamAsync(process.StandardError);
-
-			await foreach (var line in outputChannel.Reader.ReadAllAsync(cancellationToken))
+			finally
 			{
-				yield return line;
+				CommandRunning = false;
 			}
-
-			await Task.WhenAll(outputTask, errorTask);
-
-			await process.WaitForExitAsync(cancellationToken);
 		}
 	}
 }

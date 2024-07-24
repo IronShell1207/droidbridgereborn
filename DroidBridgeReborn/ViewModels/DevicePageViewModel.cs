@@ -12,12 +12,14 @@ using Microsoft.UI.Xaml;
 
 namespace DroidBridgeReborn.ViewModels
 {
+	using AdbCore.Abstraction;
 	using System;
 
 	public class DevicePageViewModel : ObservableObject, INavigatable
 	{
-
 		private DispatcherTimer _deviceInfoUpdateTimer = new DispatcherTimer();
+
+		private object _propUpdateLock = new object();
 		/// <summary>
 		/// Статичный экземпляр класса <see cref="DevicePageViewModel"/>.
 		/// </summary>
@@ -37,7 +39,13 @@ namespace DroidBridgeReborn.ViewModels
 		public DeviceViewModel SelectedDevice
 		{
 			get => _selectedDevice;
-			set => SetProperty(ref _selectedDevice, value);
+			set
+			{
+				lock (_propUpdateLock)
+				{
+					SetProperty(ref _selectedDevice, value);
+				}
+			}
 		}
 
 		/// <summary>
@@ -49,8 +57,23 @@ namespace DroidBridgeReborn.ViewModels
 			_deviceInfoUpdateTimer.Tick += DeviceInfoUpdateTimer_Tick;
 			var devicesUpdateService = App.ServiceProvider.GetRequiredService<AdbDevicesListUpdaterService>();
 			devicesUpdateService.ErrorOccurred += DevicesUpdateService_ErrorOccurred;
-			devicesUpdateService.DeviceAdded += DevicesUpdateService_DeviceUpdated;
-			devicesUpdateService.DeviceRemoved += DevicesUpdateService_DeviceUpdated;
+			devicesUpdateService.DeviceAdded += DevicesUpdateService_DeviceAdded;
+			devicesUpdateService.DeviceRemoved += DevicesUpdateService_DeviceRemoved;
+			var adbServiceupdater = App.ServiceProvider.GetRequiredService<IADBServiceMonitor>();
+			adbServiceupdater.OnADBStatusChanged += AdbServiceupdater_OnADBStatusChanged;
+		}
+
+		private void DevicesUpdateService_DeviceAdded(IDevice obj)
+		{
+			_deviceInfoUpdateTimer.Interval = TimeSpan.FromSeconds(1);
+		}
+
+		private void AdbServiceupdater_OnADBStatusChanged(bool isRunning)
+		{
+			if (isRunning == false)
+			{
+				SelectedDevice = DeviceViewModel.Empty;
+			}
 		}
 
 		private void DevicesUpdateService_ErrorOccurred(AdbCore.Exceptions.AdbCommandExecutionException obj)
@@ -60,6 +83,12 @@ namespace DroidBridgeReborn.ViewModels
 
 		private async void DeviceInfoUpdateTimer_Tick(object sender, object e)
 		{
+			if (_deviceInfoUpdateTimer.Interval == TimeSpan.FromSeconds(1))
+				_deviceInfoUpdateTimer.Interval = TimeSpan.FromSeconds(10);
+			
+			if (SelectedDevice== null || SelectedDevice == DeviceViewModel.Empty && DevicesListViewModel.Instance.Devices.Any())
+				SelectedDevice = DevicesListViewModel.Instance.Devices.FirstOrDefault() ?? DeviceViewModel.Empty;
+
 			await UpdateDeviceBatteryInfo();
 		}
 
@@ -93,13 +122,12 @@ namespace DroidBridgeReborn.ViewModels
 			}
 		}
 
-		private async void DevicesUpdateService_DeviceUpdated(AdbCore.Abstraction.IDevice device)
+		private async void DevicesUpdateService_DeviceRemoved(AdbCore.Abstraction.IDevice device)
 		{
-			if (DevicesListViewModel.Instance.Devices.Any(x => x.DeviceId == SelectedDevice.DeviceId) == false)
+			if (SelectedDevice.DeviceId == device.DeviceId)
 			{
-				SelectedDevice = DevicesListViewModel.Instance.Devices.FirstOrDefault() ?? DeviceViewModel.Empty;
+				SelectedDevice = DeviceViewModel.Empty;
 				await UpdateDeviceProps();
-				
 			}
 		}
 

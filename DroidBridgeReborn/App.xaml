@@ -28,6 +28,10 @@
 			<converters:AdbStatusToStringConverter x:Key="AdbStatusToStringConverter" />
 			<converters:NavBarItemToBoolConverter x:Key="NavBarItemToBoolConverter" />
 			<converters:AdbDeviceStateToStringConverter x:Key="AdbDeviceStateToStringConverter" />
+			<msconvert:BoolToVisibilityConverter x:Key="InvertedBoolToVisibilityConverter">
+				<msconvert:BoolToVisibilityConverter.FalseValue><Visibility>Visible</Visibility></msconvert:BoolToVisibilityConverter.FalseValue>
+				<msconvert:BoolToVisibilityConverter.TrueValue><Visibility>Collapsed</Visibility></msconvert:BoolToVisibilityConverter.TrueValue>
+			</msconvert:BoolToVisibilityConverter>
 			<msconvert:FormatStringConverter x:Key="FormatStringConverter" />
 			<msconvert:StringFormatConverter x:Key="StringFormatConverter"/>
 			<converters:AdbDeviceStateToBoolConverter x:Key="AdbDeviceStateToBoolConverter" />

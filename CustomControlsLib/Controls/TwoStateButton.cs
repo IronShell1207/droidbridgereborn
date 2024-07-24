@@ -88,6 +88,14 @@
 			PointerPressed += TwoStateButton_PointerPressed;
 			KeyDown += TwoStateButton_KeyDown;
 			PointerCaptureLost += TwoStateButton_PointerCaptureLost;
+			this.LayoutUpdated += TwoStateButton_LayoutUpdated;
+			this.GotFocus += TwoStateButton_LayoutUpdated;
+			this.EffectiveViewportChanged += TwoStateButton_LayoutUpdated;
+		}
+
+		private void TwoStateButton_LayoutUpdated(object sender, object e)
+		{
+			UpdateVisualState();
 		}
 
 		private void TwoStateButton_KeyDown(object sender, Microsoft.UI.Xaml.Input.KeyRoutedEventArgs e)

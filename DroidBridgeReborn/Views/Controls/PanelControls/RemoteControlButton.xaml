@@ -12,8 +12,8 @@
 	<Grid>
 		<Viewbox
 			Height="80"
-			Margin="10,0,0,0"
-			HorizontalAlignment="Left"
+			Margin="10,0,10,0"
+			HorizontalAlignment="Right"
 			VerticalAlignment="Bottom"
 			Opacity="0.15">
 			<Image Source="{StaticResource RemoteConnectIcon}" />
@@ -31,13 +31,14 @@
 			<Button
 				MinWidth="140"
 				Padding="26,8"
-				HorizontalAlignment="Right"
+				Margin="10 0 0 0"
+				HorizontalAlignment="Left"
 				VerticalAlignment="Bottom"
 				CornerRadius="10"
 				Style="{StaticResource AccentButtonAlignedStyle}">
 				<TextBlock FontFamily="{StaticResource Nunito}" Text="Connect" />
 			</Button>
-			<Button
+			<Button IsHitTestVisible="False"
 				Margin="0,10,5,0"
 				HorizontalAlignment="Right"
 				VerticalAlignment="Top"

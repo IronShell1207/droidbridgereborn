@@ -26,6 +26,12 @@
 			}
 		}
 
+		public void UpdateStatus()
+		{ 
+			OnUpdateAction(null);
+		}
+
+
 		public bool IsRunning { get; private set; }
 
 		protected override void OnUpdateAction(object state)

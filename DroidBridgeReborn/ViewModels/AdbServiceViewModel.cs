@@ -5,6 +5,7 @@ using AdbCore.Abstraction;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.DependencyInjection;
 using Win.Utils.Helpers;
+using AdbCore.Service;
 
 namespace DroidBridgeReborn.ViewModels
 {
@@ -69,7 +70,16 @@ namespace DroidBridgeReborn.ViewModels
 		/// </summary>
 		private async Task OnStartStopServerAsync()
 		{
-
+			var cmdsExecutor = App.ServiceProvider.GetRequiredService<AndroidBridgeCommandExecutor>();
+			if (IsServerRunning)
+			{
+				await cmdsExecutor.StopServerAndKillAllProcesses();
+				IsServerRunning = false;
+			}
+			else
+			{
+				await cmdsExecutor.StartAdbServer();
+			}
 		}
   
 

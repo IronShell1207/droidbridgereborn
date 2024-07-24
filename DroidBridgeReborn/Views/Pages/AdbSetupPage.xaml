@@ -13,56 +13,123 @@
 	DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=GetAdbServiceViewModel}"
 	mc:Ignorable="d">
 
-	<Grid
-		Padding="30"
-		HorizontalAlignment="Center"
-		VerticalAlignment="Center">
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="Auto" />
-			<ColumnDefinition Width="Auto" />
-		</Grid.ColumnDefinitions>
+	<Grid>
+		<Grid
+			Padding="30"
+			HorizontalAlignment="Center"
+			VerticalAlignment="Center">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
+			</Grid.ColumnDefinitions>
 
-		<StackPanel>
-			<Viewbox
-				MaxHeight="300"
-				RelativePanel.AlignHorizontalCenterWithPanel="True"
-				RelativePanel.AlignVerticalCenterWithPanel="True">
-
-				<Grid>
-					<ui:Effects.Shadow>
-						<media:AttachedCardShadow
-							BlurRadius="35"
-							CornerRadius="100"
-							Opacity="0.6"
-							Color="White" />
-					</ui:Effects.Shadow>
-					<Grid
-						Width="200"
-						Height="200"
-						Padding="30"
-						Background="#67424242"
-						BorderBrush="White"
-						BorderThickness="10"
-						CornerRadius="90">
-						<Viewbox>
-							<controls:SvgIcon FillColor="White" ImageSource="{StaticResource CAndroidIcon}" />
-						</Viewbox>
+			<StackPanel>
+				<Viewbox
+					MaxHeight="220"
+					RelativePanel.AlignHorizontalCenterWithPanel="True"
+					RelativePanel.AlignVerticalCenterWithPanel="True">
+					<Grid>
+						<ui:Effects.Shadow>
+							<media:AttachedCardShadow
+								BlurRadius="35"
+								CornerRadius="100"
+								Opacity="0.6"
+								Color="White" />
+						</ui:Effects.Shadow>
+						<Grid
+							Width="200"
+							Height="200"
+							Padding="30"
+							Background="#67424242"
+							BorderBrush="White"
+							BorderThickness="10"
+							CornerRadius="90">
+							<Viewbox>
+								<controls:SvgIcon FillColor="White" ImageSource="{StaticResource CAndroidIcon}" />
+							</Viewbox>
+						</Grid>
 					</Grid>
-				</Grid>
-			</Viewbox>
+				</Viewbox>
 
-			<StackPanel Margin="0,30,0,0" Spacing="5">
-				<TextBlock
+				<StackPanel
+					Margin="0,30,0,0"
+					Orientation="Horizontal"
+					Spacing="15">
+					<TextBlock
+						HorizontalAlignment="Center"
+						FontFamily="{StaticResource Raleway}"
+						FontSize="24"
+						FontWeight="SemiBold"
+						Text="Adb service status:" />
+					<StackPanel
+						HorizontalAlignment="Center"
+						Orientation="Horizontal"
+						Spacing="15">
+						<Grid>
+							<Viewbox Height="25" Visibility="{Binding IsServerRunning}">
+								<controls:SvgIcon FillColor="White" ImagePath="ms-appx:///Assets/Icons/ToColorize/status-success.svg" />
+							</Viewbox>
+							<Viewbox Height="25" Visibility="{Binding IsServerRunning, Converter={StaticResource InvertedBoolToVisibilityConverter}}">
+								<controls:SvgIcon FillColor="White" ImagePath="ms-appx:///Assets/Icons/ToColorize/status-alert.svg" />
+							</Viewbox>
+						</Grid>
+						<TextBlock
+							HorizontalAlignment="Center"
+							FontFamily="{StaticResource Raleway}"
+							FontSize="25"
+							FontWeight="Bold"
+							Text="{Binding IsServerRunning, Converter={StaticResource AdbStatusToStringConverter}}" />
+					</StackPanel>
+
+				</StackPanel>
+				<Button
+					Height="35"
+					MinWidth="250"
+					Margin="0,15,0,0"
+					Command="{Binding StartStopServerAsyncCommand}"
 					HorizontalAlignment="Center"
-					FontFamily="{StaticResource Raleway}"
-					FontSize="30"
-					FontWeight="SemiBold"
-					Text="Adb service status" />
-				<TextBlock FontFamily="{StaticResource Raleway}" Text="{Binding IsServerRunning, Converter={StaticResource AdbStatusToStringConverter}}" />
-				 
+					Style="{StaticResource AccentButtonAlignedStyle}">
+					<Grid>
+						<TextBlock
+							FontWeight="Bold"
+							Text="Stop server"
+							Visibility="{Binding IsServerRunning}" />
+						<TextBlock
+							FontWeight="Bold"
+							Text="Start server"
+							Visibility="{Binding IsServerRunning, Converter={StaticResource InvertedBoolToVisibilityConverter}}" />
+					</Grid>
+				</Button>
 			</StackPanel>
-		</StackPanel>
 
+		</Grid>
+		<Grid
+			Margin="10,0"
+			Padding="10,7"
+			HorizontalAlignment="Stretch"
+			VerticalAlignment="Bottom"
+			Background="#24FFFFFF"
+			CornerRadius="10 10 0 0"
+			Opacity="0.75"
+			Visibility="{Binding IsServerRunning}">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="*" />
+			</Grid.ColumnDefinitions>
+			<TextBlock
+				VerticalAlignment="Center"
+				FontFamily="{StaticResource Raleway}"
+				FontSize="13">
+				<Run Text="Adb executable path:" />
 
+			</TextBlock>
+			<TextBox
+				Grid.Column="1"
+				FontFamily="{StaticResource Raleway}"
+				FontSize="13"
+				IsReadOnly="True"
+				Style="{StaticResource _customFlatTextBoxStyle}"
+				Text="{Binding ServerExecutablePath}" />
+		</Grid>
 	</Grid>
 </Page>
