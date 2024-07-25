@@ -22,6 +22,7 @@
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Assets\Executable\scrcpy-win64-v2.5.zip" />
     <None Remove="Assets\Fonts\Champagne-Limousines-Bold.ttf" />
     <None Remove="Assets\Fonts\NunitoSans.ttf" />
     <None Remove="Assets\Fonts\Raleway.ttf" />
@@ -144,6 +145,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Content Update="Assets\Executable\scrcpy-win64-v2.5.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Update="Assets\Fonts\Champagne-Limousines-Bold.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

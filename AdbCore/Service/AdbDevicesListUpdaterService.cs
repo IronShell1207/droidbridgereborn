@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using Windows.Devices.Enumeration;
 using AdbCore.Abstraction;
 using AdbCore.Enums;
 using AdbCore.Exceptions;
@@ -23,6 +24,7 @@ namespace AdbCore.Service
 	
 		private List<IDevice> _connectedDevices = new List<IDevice>();
 
+		private DeviceWatcher _deviceWatcher;
 		public event Action<IDevice> DeviceUpdated;
 		public event Action<IDevice> DeviceRemoved;
 		public event Action<IDevice> DeviceAdded;
@@ -35,8 +37,10 @@ namespace AdbCore.Service
 			_adbServiceMonitor = adbServiceMonitor;
 			_commandExecutor = commandExecutor;
 			_adbServiceMonitor.OnADBStatusChanged += _adbServiceMonitor_OnADBStatusChanged;
+			_deviceWatcher = Windows.Devices.Enumeration.DeviceInformation.CreateWatcher();
 		}
 
+	
 
 		private void _adbServiceMonitor_OnADBStatusChanged(bool isRunning)
 		{
