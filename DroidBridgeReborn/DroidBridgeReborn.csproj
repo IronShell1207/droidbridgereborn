@@ -22,7 +22,7 @@
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="Assets\Executable\scrcpy-win64-v2.5.zip" />
+    <None Remove="Assets\Executable\scrcpy-win64.zip" />
     <None Remove="Assets\Fonts\Champagne-Limousines-Bold.ttf" />
     <None Remove="Assets\Fonts\NunitoSans.ttf" />
     <None Remove="Assets\Fonts\Raleway.ttf" />
@@ -32,6 +32,7 @@
     <None Remove="Assets\Icons\androidEnabled.svg" />
     <None Remove="Assets\Icons\bag-shopping-minus.png" />
     <None Remove="Assets\Icons\connect.svg" />
+    <None Remove="Assets\Icons\net_scan.svg" />
     <None Remove="Assets\Icons\rectangle-list.png" />
     <None Remove="Assets\Icons\settings_cog_ic.svg" />
     <None Remove="Assets\Icons\ToColorize\android-ver.svg" />
@@ -49,6 +50,7 @@
     <None Remove="Assets\Images\DeviceStates\not_connected.png" />
     <None Remove="Assets\Images\DeviceStates\not_connected_icon.png" />
     <None Remove="Assets\Images\dialback.png" />
+    <None Remove="Assets\Images\net_scan.png" />
     <None Remove="Assets\Images\shadowy-jungle-rhythms-stocktune.jpg" />
     <None Remove="Assets\Images\test-blurry.png" />
     <None Remove="Assets\Images\wireless-charging-270.png" />
@@ -64,6 +66,7 @@
     <None Remove="Resources\VectorsDictionary.xaml" />
     <None Remove="Views\Controls\Dialogs\BaseDialogView.xaml" />
     <None Remove="Views\Controls\Dialogs\ConnectedDevicesListDialog.xaml" />
+    <None Remove="Views\Controls\Dialogs\Contents\NetworkScanDialogView.xaml" />
     <None Remove="Views\Controls\Dialogs\ToastView.xaml" />
     <None Remove="Views\Controls\NavBarItemButton.xaml" />
     <None Remove="Views\Controls\PanelControls\ApplicationManagerButton.xaml" />
@@ -145,7 +148,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Content Update="Assets\Executable\scrcpy-win64-v2.5.zip">
+    <Content Update="Assets\Executable\scrcpy-win64.zip">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="Assets\Fonts\Champagne-Limousines-Bold.ttf">
@@ -173,6 +176,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="Assets\Icons\connect.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Assets\Icons\net_scan.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="Assets\Icons\rectangle-list.png">
@@ -212,6 +218,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="Assets\Images\dialback.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Assets\Images\net_scan.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="Assets\Images\shadowy-jungle-rhythms-stocktune.jpg">
@@ -324,6 +333,11 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="Views\Controls\Dialogs\ToastView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\Controls\Dialogs\Contents\NetworkScanDialogView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

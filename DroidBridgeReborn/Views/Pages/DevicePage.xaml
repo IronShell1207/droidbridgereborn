@@ -28,19 +28,34 @@
 			Style="{StaticResource DeviceInfoPageGridsStyle}">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
 				<ColumnDefinition Width="*" />
 				<ColumnDefinition Width="Auto" />
 			</Grid.ColumnDefinitions>
-			<Viewbox Height="25">
-				<Image Source="{StaticResource AddDeviceIcon}" />
-			</Viewbox>
-			<TextBox
+			<Button
+				Height="27"
+				Padding="2"
+				Command="{Binding Source={StaticResource ViewModelLocator}, Path=GetDevicesListViewModel.ScanNetworkForDevicesAsyncCommand}"
+				Style="{StaticResource FlatButtonAlignedStyle}">
+				<Image Source="{StaticResource NetScanIcon}" />
+			</Button>
+			<TextBlock
 				Grid.Column="1"
+				Margin="15,0,0,0"
+				VerticalAlignment="Center"
+				FontFamily="{StaticResource Raleway}"
+				Text="Device ip:" />
+			<TextBox
+				Grid.Column="2"
 				Padding="15,7"
 				FontFamily="{StaticResource Raleway}"
 				PlaceholderText="Enter device IP address to connect..."
-				Style="{StaticResource _customFlatTextBoxStyle}" />
-			<Button Grid.Column="2" Style="{StaticResource AccentButtonAlignedStyle}">
+				Style="{StaticResource _customFlatTextBoxStyle}"
+				Text="{Binding Source={StaticResource ViewModelLocator}, Path=GetDevicesListViewModel.DeviceConnectFieldText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+			<Button
+				Grid.Column="3"
+				Command="{Binding Source={StaticResource ViewModelLocator}, Path=GetDevicesListViewModel.ConnectDevicAsyncCommand}"
+				Style="{StaticResource AccentButtonAlignedStyle}">
 				<TextBlock Text="Connect" />
 			</Button>
 		</Grid>

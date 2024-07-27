@@ -19,6 +19,7 @@
 	<SvgImageSource x:Key="AndroidDarkIcon" UriSource="/Assets/Icons/androidEnabled.svg" />
 	<SvgImageSource x:Key="UploadIcon" UriSource="/Assets/Icons/upload.svg" />
 	<SvgImageSource x:Key="AddDeviceIcon" UriSource="/Assets/Icons/add-device.svg" />
+	<SvgImageSource x:Key="NetScanIcon" UriSource="/Assets/Icons/net_scan.svg" />
 
 	<SvgImageSource x:Key="CAndroidIcon" UriSource="ms-appx:///Assets/Icons/ToColorize/android.svg" />
 	<SvgImageSource x:Key="CAndroidStoreIcon" UriSource="ms-appx:///Assets/Icons/ToColorize/basket-shopping-simple.svg" />

@@ -165,6 +165,7 @@
 			VerticalAlignment="Top"
 			FontFamily="{StaticResource Raleway}"
 			FontSize="16"
+			Visibility="Collapsed"
 			IsHitTestVisible="False"
 			Text="1" />
 	</Grid>

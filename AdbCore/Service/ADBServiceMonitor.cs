@@ -17,7 +17,7 @@
 
 		public string CurrentAdbPath {
 			get => _currentAdbPath;
-			private set {
+			set {
 				if (_currentAdbPath != value)
 				{
 					_currentAdbPath = value;
@@ -34,7 +34,7 @@
 
 		public bool IsRunning { get; private set; }
 
-		protected override void OnUpdateAction(object state)
+		public override void OnUpdateAction(object state)
 		{
 			bool currentStatus = IsAdbRunning();
 			if (currentStatus != IsRunning)

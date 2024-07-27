@@ -6,7 +6,7 @@
 	{
 		event Action<bool> OnADBStatusChanged;
 		event Action<string> OnADBPathChanged;
-		string CurrentAdbPath { get; }
+		string CurrentAdbPath { get; set; }
 		bool IsRunning { get; }
 		void StartMonitoring();
 		void StopMonitoring();

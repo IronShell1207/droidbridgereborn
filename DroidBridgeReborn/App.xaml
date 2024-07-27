@@ -32,6 +32,15 @@
 				<msconvert:BoolToVisibilityConverter.FalseValue><Visibility>Visible</Visibility></msconvert:BoolToVisibilityConverter.FalseValue>
 				<msconvert:BoolToVisibilityConverter.TrueValue><Visibility>Collapsed</Visibility></msconvert:BoolToVisibilityConverter.TrueValue>
 			</msconvert:BoolToVisibilityConverter>
+			<msconvert:EmptyStringToObjectConverter x:Key="IsStringEmptyToVisibilityConverter">
+				<msconvert:EmptyStringToObjectConverter.NotEmptyValue>
+					<Visibility>Visible</Visibility>
+				</msconvert:EmptyStringToObjectConverter.NotEmptyValue>
+				<msconvert:EmptyStringToObjectConverter.EmptyValue>
+					<Visibility>Collapsed</Visibility>
+				</msconvert:EmptyStringToObjectConverter.EmptyValue>
+			</msconvert:EmptyStringToObjectConverter>
+
 			<msconvert:FormatStringConverter x:Key="FormatStringConverter" />
 			<msconvert:StringFormatConverter x:Key="StringFormatConverter"/>
 			<converters:AdbDeviceStateToBoolConverter x:Key="AdbDeviceStateToBoolConverter" />

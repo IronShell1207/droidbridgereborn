@@ -11,12 +11,14 @@ using AdbCore.Exceptions;
 using AdbCore.Models;
 using AdbCore.Service.Base;
 using Microsoft.AppCenter.Crashes;
+using Microsoft.UI.Xaml.Controls;
 using Serilog;
 
 namespace AdbCore.Service
 {
 	
-	public class AdbDevicesListUpdaterService : PeriodicUpdatedService
+	public class AdbDevicesListUpdaterService : PeriodicUpdatedService 
+
 	{
 		private IADBServiceMonitor _adbServiceMonitor;
 		private AndroidBridgeCommandExecutor _commandExecutor;
@@ -40,8 +42,6 @@ namespace AdbCore.Service
 			_deviceWatcher = Windows.Devices.Enumeration.DeviceInformation.CreateWatcher();
 		}
 
-	
-
 		private void _adbServiceMonitor_OnADBStatusChanged(bool isRunning)
 		{
 			if (isRunning)
@@ -55,7 +55,7 @@ namespace AdbCore.Service
 			}
 		}
 
-		protected override async void OnUpdateAction(object state)
+		public override async void OnUpdateAction(object state)
 		{
 			try
 			{

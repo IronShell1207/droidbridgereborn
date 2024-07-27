@@ -122,12 +122,80 @@
 	</Style>
 
 	<Style x:Key="AccentButtonAlignedStyle" TargetType="Button">
-		<Setter Property="Padding" Value="20 4" />
+		<Setter Property="Padding" Value="20,4" />
 		<Setter Property="Background" Value="White" />
 		<Setter Property="Foreground" Value="#121018" />
 		<Setter Property="BorderThickness" Value="0" />
 		<Setter Property="HorizontalAlignment" Value="Stretch" />
-		<Setter Property="FontWeight" Value="SemiBold" /> 
+		<Setter Property="FontWeight" Value="SemiBold" />
+		<Setter Property="VerticalAlignment" Value="Stretch" />
+		<Setter Property="HorizontalContentAlignment" Value="Center" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+		<Setter Property="CornerRadius" Value="8" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="Button">
+					<ContentPresenter
+						x:Name="ContentPresenter"
+						Width="{TemplateBinding Width}"
+						Height="{TemplateBinding Height}"
+						Padding="{TemplateBinding Padding}"
+						HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+						VerticalAlignment="{TemplateBinding VerticalAlignment}"
+						HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+						VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+						Background="{TemplateBinding Background}"
+						BorderBrush="{TemplateBinding BorderBrush}"
+						BorderThickness="{TemplateBinding BorderThickness}"
+						CornerRadius="{TemplateBinding CornerRadius}"
+						FontFamily="{StaticResource Raleway}"
+						Foreground="{TemplateBinding Foreground}">
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup x:Name="CommonStates">
+								<VisualState x:Name="Normal">
+									<Storyboard>
+										<PointerUpThemeAnimation Storyboard.TargetName="ContentPresenter" />
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="Pressed">
+									<Storyboard>
+										<PointerDownThemeAnimation Storyboard.TargetName="ContentPresenter" />
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="PointerOver">
+									<Storyboard>
+										<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
+											<DiscreteObjectKeyFrame KeyTime="0" Value="#daffffff" />
+										</ObjectAnimationUsingKeyFrames>
+										<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+											<DiscreteObjectKeyFrame KeyTime="0" Value="#121018" />
+										</ObjectAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="Disabled">
+									<Storyboard>
+										<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Opacity">
+											<DiscreteObjectKeyFrame KeyTime="0" Value="0.5" />
+										</ObjectAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+					</ContentPresenter>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="SecondaryButtonAlignedStyle" TargetType="Button">
+		<Setter Property="Padding" Value="20,4" />
+		<Setter Property="Background" Value="#24ffffff" />
+		<Setter Property="Foreground" Value="#fafaff" />
+		<Setter Property="BorderThickness" Value="0" />
+		<Setter Property="BorderBrush" Value="#99ffffff" />
+		<Setter Property="HorizontalAlignment" Value="Stretch" />
+		<Setter Property="FontWeight" Value="SemiBold" />
+		<Setter Property="UseLayoutRounding" Value="False" />
 		<Setter Property="VerticalAlignment" Value="Stretch" />
 		<Setter Property="HorizontalContentAlignment" Value="Center" />
 		<Setter Property="VerticalContentAlignment" Value="Center" />

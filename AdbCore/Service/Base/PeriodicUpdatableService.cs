@@ -56,7 +56,7 @@ namespace AdbCore.Service.Base
 			}
 		}
 
-		protected virtual void OnUpdateAction(object state)
+		public virtual void OnUpdateAction(object state)
 		{
 		}
 	}

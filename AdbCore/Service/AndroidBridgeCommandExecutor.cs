@@ -14,6 +14,7 @@ using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using Microsoft.AppCenter.Crashes;
 using Serilog;
+using AdbCore.Helpers;
 
 namespace AdbCore.Service
 {
@@ -27,13 +28,12 @@ namespace AdbCore.Service
 		public AndroidBridgeCommandExecutor(IADBServiceMonitor adbUpdateService)
 		{
 			_adbServiceMonitor = adbUpdateService;
-			 
 		}
 
 		public async Task StartAdbServer()
 		{
 			if (string.IsNullOrWhiteSpace(_adbServiceMonitor.CurrentAdbPath))
-				throw new ArgumentNullException("adb path", "No adb path in service");
+				throw new ArgumentNullException("adbPath", "No adb path in service");
 
 			using var process = GetAdbStartupProcess("start-server", true);
 			process.Start();
@@ -46,15 +46,18 @@ namespace AdbCore.Service
 		{
 			try
 			{
+				Task awaiter = Task.Delay(5000);
 				using var process = GetAdbStartupProcess("kill-server");
 				process.Start();
-				await process.WaitForExitAsync();
-
+				Task.WaitAny(process.WaitForExitAsync(), awaiter);
+				
 				var adbProcs = Process.GetProcessesByName("adb");
+
 				foreach (var adbProc in adbProcs)
 				{
-					adbProc.Kill();
+					adbProc.TryKill();
 				}
+
 				_adbServiceMonitor.UpdateStatus();
 				Log.Logger.Debug("Server stopped");
 			}

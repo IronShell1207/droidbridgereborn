@@ -29,7 +29,7 @@
 		CornerRadius="20"
 		Grid.RowSpacing="15">
 		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
 			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
@@ -40,31 +40,26 @@
 		<StackPanel Spacing="5">
 			<StackPanel Margin="0,0,0,10" Orientation="Vertical">
 				<TextBlock Style="{StaticResource TileHeaderTextStyle}" Text="Device information" />
-				<Button
-					Margin="0,5,0,-5"
-					Padding="30,7"
-					HorizontalAlignment="Left"
-					Command="{Binding Source={StaticResource ViewModelLocator}, Path=GetDevicesListViewModel.OpenDevicesPickerDialogAsyncCommand}"
-					CornerRadius="12"
-					Style="{StaticResource AccentButtonAlignedStyle}">
-					<StackPanel
-						Margin="-5,0"
-						Orientation="Horizontal"
-						Spacing="10">
-						<BitmapIcon Height="20" UriSource="ms-appx:///Assets/Icons/rectangle-list.png" />
-						<TextBlock Text="Change device" />
-					</StackPanel>
-				</Button>
+
+			</StackPanel>
+			<StackPanel Style="{StaticResource DeviceInfoStackPanelStyle}" Visibility="{Binding SelectedDevice.IsMoreInfoAvailable}">
+				<Viewbox Height="15">
+					<controls:SvgIcon FillColor="White" ImagePath="ms-appx:///Assets/Icons/ToColorize/info-circle.svg" />
+				</Viewbox>
+				<TextBlock FontSize="16" Style="{StaticResource TileTextsStyle}" TextWrapping="WrapWholeWords" MaxWidth="350">
+					<Run Text="Device model: " />
+					<Run FontWeight="SemiBold" Text="{Binding SelectedDevice.DeviceManufacturer}" />
+					<Run FontWeight="SemiBold" Text="{Binding SelectedDevice.DeviceRealName}" />
+					<Run Text="(" /><Run Text="{Binding SelectedDevice.DeviceModelName}" /><Run Text=")" />
+				</TextBlock>
 			</StackPanel>
 			<StackPanel Style="{StaticResource DeviceInfoStackPanelStyle}">
 				<Viewbox Height="15">
 					<controls:SvgIcon FillColor="White" ImagePath="ms-appx:///Assets/Icons/ToColorize/info-circle.svg" />
 				</Viewbox>
 				<TextBlock FontSize="16" Style="{StaticResource TileTextsStyle}">
-					<Run Text="Device model: " />
-					<Run FontWeight="SemiBold" Text="{Binding SelectedDevice.DeviceManufacturer}" />
-					<Run FontWeight="SemiBold" Text="{Binding SelectedDevice.DeviceRealName}" />
-					<Run Text="(" /><Run Text="{Binding SelectedDevice.DeviceModelName}" /><Run Text=")" />
+					<Run Text="Device id: " />
+					<Run FontWeight="SemiBold" Text="{Binding SelectedDevice.DeviceId}" />
 				</TextBlock>
 			</StackPanel>
 			<StackPanel Style="{StaticResource DeviceInfoStackPanelStyle}">
@@ -76,19 +71,16 @@
 					<Run FontWeight="SemiBold" Text="{Binding SelectedDevice.DeviceState, Converter={StaticResource AdbDeviceStateToStringConverter}}" />
 				</TextBlock>
 			</StackPanel>
-			<StackPanel Style="{StaticResource DeviceInfoStackPanelStyle}">
+			<StackPanel Style="{StaticResource DeviceInfoStackPanelStyle}" Visibility="{Binding SelectedDevice.ChipName, Converter={StaticResource IsStringEmptyToVisibilityConverter}}">
 				<Viewbox Height="15">
 					<controls:SvgIcon FillColor="White" ImagePath="ms-appx:///Assets/Icons/ToColorize/cpu-ic.svg" />
 				</Viewbox>
-				<TextBlock
-					FontSize="16"
-					Style="{StaticResource TileTextsStyle}"
-					Visibility="{Binding SelectedDevice.IsMoreInfoAvailable}">
+				<TextBlock FontSize="16" Style="{StaticResource TileTextsStyle}">
 					<Run Text="Cpu:" />
 					<Run FontWeight="SemiBold" Text="{Binding SelectedDevice.ChipName}" />
 				</TextBlock>
 			</StackPanel>
-			<StackPanel Style="{StaticResource DeviceInfoStackPanelStyle}">
+			<StackPanel Style="{StaticResource DeviceInfoStackPanelStyle}" Visibility="{Binding SelectedDevice.IsMoreInfoAvailable}">
 				<Viewbox Height="15">
 					<controls:SvgIcon FillColor="White" ImagePath="ms-appx:///Assets/Icons/ToColorize/android-ver.svg" />
 				</Viewbox>
@@ -127,6 +119,29 @@
 
 			</Grid>
 		</Viewbox>
+		<Button
+			Grid.Row="1"
+			Width="200"
+			Height="36"
+			Margin="-5,5,0,15"
+			HorizontalAlignment="Left"
+			HorizontalContentAlignment="Stretch"
+			Command="{Binding Source={StaticResource ViewModelLocator}, Path=GetDevicesListViewModel.OpenDevicesPickerDialogAsyncCommand}"
+			CornerRadius="12"
+			Style="{StaticResource AccentButtonAlignedStyle}">
+			<Grid HorizontalAlignment="Stretch">
+				<BitmapIcon
+					Height="20"
+					HorizontalAlignment="Left"
+					UriSource="ms-appx:///Assets/Icons/rectangle-list.png" />
+				<TextBlock
+					Margin="22,0,0,0"
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					FontSize="15"
+					Text="Switch device" />
+			</Grid>
+		</Button>
 	</Grid>
 
 </UserControl>

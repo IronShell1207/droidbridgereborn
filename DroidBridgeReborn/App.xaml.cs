@@ -5,6 +5,7 @@ namespace DroidBridgeReborn
 {
 	using AdbCore.Service;
 	using DroidBridgeReborn.Helpers;
+	using DroidBridgeReborn.Services;
 	using Microsoft.Extensions.DependencyInjection;
 	using Microsoft.UI.Xaml;
 	using Serilog;
@@ -57,8 +58,20 @@ namespace DroidBridgeReborn
 			if (_servicesInitialized)
 				return;
 
+			await AdbExecutablesService.CheckAndUnpackExecutablesAsync();
+			string adbPath = await AdbExecutablesService.GetAdbPathAsync();
+
 			var adbService = ServiceProvider.GetRequiredService<IADBServiceMonitor>();
 			adbService.Initialize(SettingsHelper.GetAdbUpdateInterval());
+			adbService.UpdateStatus();
+			
+			if (adbService.IsRunning == false)
+			{
+				adbService.CurrentAdbPath = adbPath;
+				var commandExecutor = ServiceProvider.GetRequiredService<AndroidBridgeCommandExecutor>();
+				await commandExecutor.StartAdbServer();
+			}
+
 			var devicesUpdateService = ServiceProvider.GetRequiredService<AdbDevicesListUpdaterService>();
 			devicesUpdateService.Initialize(SettingsHelper.GetDevicesListUpdateInterval());
 			_servicesInitialized = true;
@@ -91,6 +104,7 @@ namespace DroidBridgeReborn
 			var services = new ServiceCollection();
 			services.AddSingleton<IADBServiceMonitor, ADBServiceMonitor>();
 			services.AddSingleton<AndroidBridgeCommandExecutor>();
+			services.AddSingleton<NetworkPingHelper>();
 			services.AddSingleton<AdbDevicesListUpdaterService>();
 			ServiceProvider = services.BuildServiceProvider();
 			

@@ -38,7 +38,7 @@ namespace DroidBridgeReborn.ViewModels.Objects
 		}
 
 		/// <inheritdoc cref="ChipName"/>
-		private string _chipName;
+		private string _chipName = string.Empty;
 
 		/// <summary>
 		/// Процессор.
